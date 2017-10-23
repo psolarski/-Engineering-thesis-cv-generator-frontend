@@ -1,0 +1,43 @@
+<div class="auth-page">
+  <div class="container page">
+    <div class="row">
+      <list-errors [errors]="errors"></list-errors>
+
+      <div>
+        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+          <fieldset [disabled]="isSubmitting">
+            <fieldset class="form-group">
+              <input
+                formControlName="username"
+                placeholder="Username"
+                class="form-control form-control-lg"
+                type="text"/>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <input
+                formControlName="password"
+                placeholder="Password"
+                class="form-control form-control-lg"
+                type="password" />
+            </fieldset>
+              <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
+                Sign in
+              </button>
+          </fieldset>
+        </form>
+      </div>
+
+      <!-- DEBUG TODO-->
+      <div>
+        {{ credentials | json}}
+      </div>
+
+      <a class="nav-link"
+         routerLink="/"
+         routerLinkActive="active">
+        Home
+      </a>
+    </div>
+  </div>
+</div>

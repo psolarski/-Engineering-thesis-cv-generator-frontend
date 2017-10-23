@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  api_url: `localhost:8080/cv-generator/`
+  api_url: `http://localhost:8080/`,
 };
