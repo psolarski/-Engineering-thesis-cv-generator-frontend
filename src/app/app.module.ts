@@ -11,12 +11,18 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GeneratorInterceptor } from './shared/interceptors/generator.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './profile/profile.module';
+import { FooterComponent } from './shared/layout/footer/footer.component';
+import { HeaderComponent } from "./shared/layout/header/header.component";
+import { ShowAuthenticatedDirective } from './shared/directives/show-authenticated.directive';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    HeaderComponent,
+    ShowAuthenticatedDirective
   ],
   imports: [
     BrowserModule,
@@ -31,6 +37,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
       useClass: GeneratorInterceptor,
       multi: true
     },
+    ShowAuthenticatedDirective,
     JwtService,
     EmployeeService,
     ApiService,

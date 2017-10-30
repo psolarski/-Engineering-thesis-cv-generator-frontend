@@ -1,43 +1,45 @@
-<div class="auth-page">
-  <div class="container page">
+<img src="../../assets/background.jpg">
+<div class="container-fluid" id="login">
     <div class="row">
-      <list-errors [errors]="errors"></list-errors>
+      <div class="card text-center login-card">
+          <div class="card-header">
+            Login
+          </div>
+          <div class="card-block login-card-block">
+            <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+              <fieldset [disabled]="isSubmitting">
+                <div class="form-group row">
+                  <label for="username" class="col-4 col-form-label">Username</label>
+                  <div class="col-8">
+                    <input
+                      id="username"
+                      formControlName="username"
+                      placeholder="Username"
+                      class="form-control"
+                      type="text"/>
+                  </div>
+                </div>
 
-      <div>
-        <form [formGroup]="authForm" (ngSubmit)="submitForm()">
-          <fieldset [disabled]="isSubmitting">
-            <fieldset class="form-group">
-              <input
-                formControlName="username"
-                placeholder="Username"
-                class="form-control form-control-lg"
-                type="text"/>
-            </fieldset>
-
-            <fieldset class="form-group">
-              <input
-                formControlName="password"
-                placeholder="Password"
-                class="form-control form-control-lg"
-                type="password" />
-            </fieldset>
-              <button class="btn btn-lg btn-primary pull-xs-right" [disabled]="!authForm.valid" type="submit">
-                Sign in
-              </button>
-          </fieldset>
-        </form>
+                <div class="form-group row">
+                  <label for="password" class="col-4 col-form-label">Password</label>
+                  <div class="col-8">
+                    <input
+                      id="password"
+                      formControlName="password"
+                      placeholder="Password"
+                      class="form-control"
+                      type="password" />
+                  </div>
+                </div>
+              </fieldset>
+              <div class="col-4">
+                <button class="btn btn-md btn-primary" [disabled]="!authForm.valid" type="submit">
+                  Sign in
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
-
-      <!-- DEBUG TODO-->
-      <div>
-        {{ credentials | json}}
-      </div>
-
-      <a class="nav-link"
-         routerLink="/"
-         routerLinkActive="active">
-        Home
-      </a>
     </div>
-  </div>
-</div>
+  <!--</div>-->

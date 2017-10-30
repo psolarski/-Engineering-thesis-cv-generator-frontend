@@ -11,13 +11,13 @@ import { ListErrorsComponent } from './list-errors.component';
     CommonModule
   ],
   declarations: [
-    ListErrorsComponent
+    ListErrorsComponent,
   ],
   exports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    ListErrorsComponent
+    ListErrorsComponent,
   ]
 })
 export class SharedModule {}

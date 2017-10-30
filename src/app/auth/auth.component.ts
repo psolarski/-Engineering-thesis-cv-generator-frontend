@@ -9,6 +9,7 @@ import { EmployeeService } from '../shared/services/employee.service';
 @Component({
   selector: `auth-page`,
   templateUrl: `./auth.component.html`,
+  styleUrls: [`./auth.component.css`]
 })
 export class AuthComponent {
   isSubmitting = false;
