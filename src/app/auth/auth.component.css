@@ -2,35 +2,16 @@
   margin: 1rem;
 }
 
-/*.background-image {*/
-img {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  /*z-index: -1;*/
-
-  max-height: 97vh  !important ;
-  /*height: inherit !important;*/
-  /*width: inherit  !important ;*/
-  margin: 0;
-
+.background-with-photo {
+  background: url('../../assets/background.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  -webkit-filter: sepia(100%);filter: sepia(100%);
-}
 
-.container {
-  min-height: 100vh;
-  height: auto;
-  width: auto;
-  margin: 0;
+  height: 100vh  !important;
 }
-
 
 .login-card {
-  position: relative;
-  left: 35rem;
-  top:8rem;
+  top: 8rem;
 }
