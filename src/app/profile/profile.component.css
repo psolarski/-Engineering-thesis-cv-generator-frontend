@@ -1,0 +1,22 @@
+.bottom-border {
+  margin: 1rem 0 1rem;
+  border-bottom: 1px solid #aaa;
+}
+
+.fonts {
+  font-size:16px;
+  font-weight:500;
+  margin-top: 3rem;
+}
+
+.card-content {
+  margin: 2rem;
+}
+
+.profile-picture {
+  margin-top: 1rem;
+  width: 100px;
+  height: 100px;
+  position: relative;
+  bottom: 2rem;
+}

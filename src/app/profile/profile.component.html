@@ -1,3 +1,68 @@
-<div>
-  MY NAME IS: {{name}}
+<div class="container">
+  <div class="row">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-1"></div>
+
+    <!-- Profile card -->
+    <div class="col-sm-6 fonts">
+      <div class="card mx-auto">
+        <div class="card-header">
+          My Profile
+        </div>
+
+        <!-- Card block content -->
+        <div class="card-block card-content">
+          <!--Profile picture-->
+          <div class="mx-auto text-center">
+              <div>
+                <img class="img-thumbnail  profile-picture" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
+              </div>
+            <div class="text-center">{{currentEmployee.name}} {{currentEmployee.surname}}</div>
+          </div>
+          <div class="bottom-border"></div>
+          <!--Username field-->
+          <div class="row">
+            <div class="card-text col-sm-5"> Username:</div>
+            <div class="col-sm-5">{{currentEmployee.username}}</div>
+            <div class="bottom-border"></div>
+          </div>
+          <!--Email field-->
+          <div class="row">
+            <div class="card-text col-sm-5"> Email:</div>
+            <div class="col-sm-5">{{currentEmployee.email}}</div>
+            <div class="bottom-border"></div>
+          </div>
+          <!--Phone field-->
+          <div class="row">
+            <div class="card-text col-sm-5"> Phone:</div>
+            <div class="col-sm-5">{{currentEmployee.phone}}</div>
+            <div class="bottom-border"></div>
+          </div>
+          <!--Join date field-->
+          <div class="row">
+            <div class="card-text col-sm-5"> Date of Joining:</div>
+            <div class="col-sm-5">{{currentEmployee.creationDate | date: 'dd-MM-yyyy'}}</div>
+            <div class="bottom-border"></div>
+          </div>
+          <!--City filed-->
+          <div class="row">
+            <div class="card-text col-sm-5">City:</div>
+            <div class="col-sm-5">{{currentEmployee.address.city}}</div>
+            <div class="bottom-border"></div>
+          </div>
+          <!--Street fields-->
+          <div class="row">
+            <div class="card-text col-sm-5">Street:</div>
+            <div class="col-sm-5">{{currentEmployee.address.street}} {{currentEmployee.address.number}}</div>
+            <div class="bottom-border"></div>
+          </div>
+        </div>
+
+        <div class="card-footer  text-right">
+          <button type="button" class="btn btn-sm btn-warning">Edit</button>
+          <button type="button" class="btn btn-sm btn-info">Generate CV</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -6,7 +6,8 @@ import { Employee } from '../shared/models/employee.model';
 
 @Component({
   selector: `profile-page`,
-  templateUrl: `./profile.component.html`
+  templateUrl: `./profile.component.html`,
+  styleUrls: [`./profile.component.css`]
 })
 export class ProfileComponent implements OnInit {
   name: string;

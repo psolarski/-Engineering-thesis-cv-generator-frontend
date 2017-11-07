@@ -1,3 +1,5 @@
+import { Address } from './address.model';
+
 export class Employee implements IEmployee {
   name: string;
   surname: string;
@@ -5,4 +7,6 @@ export class Employee implements IEmployee {
   token: string;
   email: string;
   phone: number;
+  creationDate: Date;
+  address: Address;
 }
