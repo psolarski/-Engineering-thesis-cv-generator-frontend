@@ -9,6 +9,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import { Employee } from '../models/employee.model';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
@@ -32,7 +33,7 @@ export class EmployeeService {
   populate() {
     console.log(`Populating tokens`);
     if (this.jwtService.getToken()) {
-      const response = this.apiService.get<IEmployee>(`employees/employee`);
+      const response = this.apiService.get(`employees/employee`);
       response.subscribe(
         data => {
           // this.jwtService.saveToken(data.headers.get(`Authorization`));
@@ -44,6 +45,21 @@ export class EmployeeService {
       this.purgeAuth();
     }
     this.purgeAuth();
+    this.mockLogin();
+  }
+
+  mockLogin() {
+    let credentials = {
+      username: "admin",
+      password: "password",
+      type: "developer"
+    };
+    this.apiService.login(credentials).subscribe(
+      data => {
+        this.isAuthenticatedSubject.next(true);
+        this.jwtService.saveToken(data.headers.get(`Authorization`));
+        this.fetchEmployeeData();
+      }, error => error);
   }
 
   /**
@@ -53,10 +69,12 @@ export class EmployeeService {
    * @returns {Observable<any>}
    */
   attemptAuth(credentials) {
+    console.log(credentials);
     const response = this.apiService.login(credentials);
       response.subscribe(
       data => {
-            this.jwtService.saveToken(data.headers.get(`Authorization`));
+        this.isAuthenticatedSubject.next(true);
+        this.jwtService.saveToken(data.headers.get(`Authorization`));
             this.fetchEmployeeData();
         }, error => error);
       return response;
@@ -66,12 +84,11 @@ export class EmployeeService {
    * Fetch user body from backend
    */
   private fetchEmployeeData() {
-    this.apiService.get<Employee>(`employees/employee`)
+    this.apiService.get(`employees/employee`)
       .subscribe(
         response => {
           this.currentEmployeeSubject.next(response.body);
           console.log(this.currentEmployeeSubject.value);
-          this.isAuthenticatedSubject.next(true);
       },
       error => error)
   }
@@ -96,5 +113,19 @@ export class EmployeeService {
    */
   getCurrentEmployee(): Employee {
     return this.currentEmployeeSubject.value;
+  }
+
+
+  /**
+   * Get whole employee list
+   * @returns {Observable<any>}
+   */
+  getEmployees(): Observable<any> {
+    return this.apiService.get("employees");
+  }
+
+
+  getEmployee(username: string): Observable<any> {
+    return this.apiService.get("employees/employee/"+ username);
   }
 }

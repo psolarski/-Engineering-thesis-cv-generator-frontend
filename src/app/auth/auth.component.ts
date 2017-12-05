@@ -37,9 +37,11 @@ export class AuthComponent {
     this.credentials = this.authForm.value;
     // console.log(this.credentials);
     this.employeeService.attemptAuth(this.credentials)
-      .subscribe(data=> {
-        console.log(`Logged in, navigate!`)
-        this.router.navigate([`/profile/admin`]);
+      .subscribe(data => {
+        setTimeout(() => {
+          console.log(`Logged in, navigate!`);
+          this.router.navigate([`/profile/admin`]);
+        },300)
       }, error => {
       console.log(`Error during login occurred!` + error);
     });

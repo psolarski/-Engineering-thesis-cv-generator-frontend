@@ -1,0 +1,22 @@
+.employees-list-wrapper {
+  margin-top: 3rem;
+}
+
+.search-input-wrapper {
+  margin-top: 1.0rem;
+  margin-right: 0.3rem;
+}
+
+.create-button-wrapper {
+  margin-top: 0.7rem;
+  margin-right: 0.1rem;
+}
+
+.entries-select-wrapper {
+  margin-top: 1.0rem;
+  margin-left: 0.3rem;
+}
+
+.dropdown-item {
+  text-align:center;
+}

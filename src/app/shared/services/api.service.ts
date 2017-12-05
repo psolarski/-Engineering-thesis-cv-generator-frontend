@@ -9,6 +9,7 @@ import 'rxjs/add/observable/of';
 
 import { JwtService } from './jwt.service';
 import { environment } from '../../../environments/environment';
+import { Employee } from '../models/employee.model';
 
 @Injectable()
 export class ApiService {
@@ -43,9 +44,9 @@ export class ApiService {
     return this.httpClient.post(url, JSON.stringify(credentials), { headers: this.setHeaders(), observe: 'response' });
   }
 
-  get<T>(path: string): Observable<any>{
+  get(path: string): Observable<any>{
     let url = environment.api_url + path;
 
-    return this.httpClient.get<T>(url, {headers: this.setHeaders(), observe: 'response' })
+    return this.httpClient.get(url, {headers: this.setHeaders(), observe: 'response'});
   }
 }
