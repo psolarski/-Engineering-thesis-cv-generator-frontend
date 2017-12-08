@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { EmployeesListComponent } from './employees-list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { EmployeesFilterPipe } from './employees-filter.pipe';
+import { AdminDirective } from '../../shared/directives/admin.directive';
 
 const employeeListRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -19,7 +20,8 @@ const employeeListRouting: ModuleWithProviders = RouterModule.forChild([
   ],
   declarations: [
     EmployeesListComponent,
-    EmployeesFilterPipe
+    EmployeesFilterPipe,
+    AdminDirective
   ],
   providers: [
     AuthGuard,

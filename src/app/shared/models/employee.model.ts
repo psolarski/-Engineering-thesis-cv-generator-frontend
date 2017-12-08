@@ -1,6 +1,9 @@
 import { Address } from './address.model';
+import { Role } from './role.model';
+import { Skill } from './skill.model';
+import { Notification } from './notification.model';
 
-export class Employee implements IEmployee {
+export class Employee {
   name: string;
   surname: string;
   username: string;
@@ -9,4 +12,8 @@ export class Employee implements IEmployee {
   phone: number;
   creationDate: Date;
   address: Address;
+
+  roles: Role[] = [];
+  skills: Skill[];
+  notifications: Notification[];
 }

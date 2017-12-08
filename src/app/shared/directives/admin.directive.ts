@@ -1,9 +1,10 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
-import { Subscription } from 'rxjs/Subscription';
 
-@Directive({ selector: `[showAuthenticated]` })
-export class ShowAuthenticatedDirective implements OnInit {
+@Directive({
+  selector: `[showAdmin]`
+})
+export class AdminDirective implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
@@ -12,8 +13,9 @@ export class ShowAuthenticatedDirective implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.employeeService.isAuthenticated.subscribe(data => {
-      if(data) {
+    this.employeeService.currentEmployee.subscribe(data => {
+      console.log("CONDITION: " + (data.roles.filter(function(e) { return e.name === 'ADMIN'; }).length > 0));
+      if (data.roles.filter(function(e) { return e.name === 'ADMIN'; }).length > 0) {
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {
         this.viewContainer.clear();

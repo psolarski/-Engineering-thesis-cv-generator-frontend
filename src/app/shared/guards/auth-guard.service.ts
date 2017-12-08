@@ -12,12 +12,11 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
 
-    console.log(`AuthGuard: ` + this.employeeService.isAuthenticated.subscribe(data => {
-      console.log(`Authenticated: ` + data)
+    this.employeeService.isAuthenticated.subscribe(data => {
       if(data === false) {
         this.router.navigate(['/login']);
       }
-    }));
+    });
     return this.employeeService.isAuthenticated.take(1);
   }
 }

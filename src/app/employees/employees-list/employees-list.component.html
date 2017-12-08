@@ -42,7 +42,7 @@
                 <th><b>Username</b></th>
                 <th><b>Address</b></th>
                 <th><b>Email</b></th>
-                <th><b>Edit</b></th>
+                <th *showAdmin><b>Edit</b></th>
                 <th><b>Profile</b></th>
               </tr>
             </thead>
@@ -54,7 +54,7 @@
                 <td> {{employee.username}} </td>
                 <td> {{employee.address.city}}, {{employee.address.street}} {{employee.address.number}} </td>
                 <td> {{employee.email}} </td>
-                <td> TO DO  </td>
+                <td *showAdmin> {{employee.roles[0].name}}  </td>
                 <td>
                   <button type="button" class="btn btn-sm btn-outline-info"
                           routerLink="/profile/{{employee.username}}">
