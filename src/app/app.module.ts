@@ -17,6 +17,7 @@ import { ShowAuthenticatedDirective } from './shared/directives/show-authenticat
 import { EmployeesListModule } from './employees/employees-list/employees-list.module';
 import { SkillsListModule } from './developers/skills/skills-list.module';
 import { DeveloperService } from './shared/services/developer.service';
+import { EducationModule } from './developers/education/education.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -41,7 +42,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     HttpClientModule,
     ProfileModule,
     EmployeesListModule,
-    SkillsListModule
+    SkillsListModule,
+    EducationModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

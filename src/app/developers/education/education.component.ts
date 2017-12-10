@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { DeveloperService } from '../../shared/services/developer.service';
 import { Developer } from '../../shared/models/developer.model';
+import { DeveloperService } from '../../shared/services/developer.service';
 
 @Component({
-  selector: 'skills-list',
-  templateUrl: './skills-list.component.html',
+  selector: 'education',
+  templateUrl: './education.component.html',
   styleUrls: [
-    './skills-list.component.css',
+    './education.component.css',
     '../shared/developers.shared.css'
   ]
 })
-export class SkillsListComponent implements OnInit {
+export class EducationComponent implements OnInit {
 
   developers: Developer[];
   queryString: string;

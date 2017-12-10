@@ -1,4 +1,4 @@
-.employees-list-wrapper {
+.list-wrapper {
   margin-top: 3rem;
 }
 
@@ -13,8 +13,8 @@
 }
 
 .entries-select-wrapper {
-   margin-top: 1.0rem;
-   margin-left: 0.3rem;
+  margin-top: 1.0rem;
+  margin-left: 0.3rem;
 }
 
 .dropdown-item {

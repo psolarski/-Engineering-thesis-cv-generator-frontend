@@ -1,6 +1,7 @@
 import { Notification } from './notification.model';
 import { Skill } from './skill.model';
 import { Role } from './role.model';
+import { Education } from './education.model';
 
 export class Developer implements IEmployee {
 
@@ -13,5 +14,6 @@ export class Developer implements IEmployee {
 
   roles: Role[] = [];
   skills: Skill[];
+  educations: Education[] = [];
   notifications: Notification[] = [];
 }

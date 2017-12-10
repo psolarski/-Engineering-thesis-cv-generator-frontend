@@ -37,42 +37,41 @@
               <th></th>
               <th></th>
               <th></th>
-              <th colspan="2"><b>Skills</b></th>
+              <th colspan="5"><b>Education</b></th>
               <th></th>
               <th></th>
             </tr>
             <tr>
               <th><b>#</b></th>
-              <th><b>First Name</b></th>
               <th><b>Last Name</b></th>
               <th><b>Username</b>
-              <th>Name</th>
-              <th>Level</th>
+              <th>University</th>
+              <th>Faculty</th>
+              <th>Specialization</th>
+              <th>Start Date</th>
+              <th>End Date</th>
               <th><b>Profile</b></th>
             </tr>
             </thead>
-            <tbody class="text-center">
-            <tr *ngFor="let developer of developers | developersFilterPipe: queryString | slice:0:elementsCount; let i = index">
-              <th scope="row"> {{i + 1}} </th>
-              <td> {{developer.name}} </td>
-              <td> {{developer.surname}} </td>
-              <td> {{developer.username}} </td>
-              <td>
-                <div *ngFor="let skill of developer.skills">
-                  {{skill.name}}
-                </div>
-              </td>
-              <td>
-                <div *ngFor="let skill of developer.skills">
-                  {{skill.level}}
-                </div>
-              </td>
-              <td>
-                <button type="button" class="btn developer btn-outline-info"
-                        routerLink="/profile/{{developer.username}}">
-                  Details
-                </button>
-              </td>
+            <tbody class="text-center" *ngFor="let developer of developers |
+                                        developerFilterPipe: queryString |
+                                         slice:0:elementsCount; let i = index">
+
+            <tr *ngFor="let education of developer.educations">
+                <th scope="row"> {{i + 1}} </th>
+                <td> {{developer.surname}} </td>
+                <td> {{developer.username}} </td>
+                <td> {{education.university}} </td>
+                <td> {{education.faculty}} </td>
+                <td> {{education.specialization}} </td>
+                <td> {{education.startDate | date: 'MM-yyyy'}} </td>
+                <td> {{education.endDate | date: 'MM-yyyy'}} </td>
+                <td>
+                  <button type="button" class="btn developer btn-outline-info"
+                          routerLink="/profile/{{developer.username}}">
+                    Details
+                  </button>
+                </td>
             </tr>
             </tbody>
           </table>
