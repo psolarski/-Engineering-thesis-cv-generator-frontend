@@ -15,6 +15,8 @@ import { FooterComponent } from './shared/layout/footer/footer.component';
 import { HeaderComponent } from "./shared/layout/header/header.component";
 import { ShowAuthenticatedDirective } from './shared/directives/show-authenticated.directive';
 import { EmployeesListModule } from './employees/employees-list/employees-list.module';
+import { SkillsListModule } from './developers/skills/skills-list.module';
+import { DeveloperService } from './shared/services/developer.service';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -38,7 +40,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     rootRouting,
     HttpClientModule,
     ProfileModule,
-    EmployeesListModule
+    EmployeesListModule,
+    SkillsListModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,
@@ -48,7 +51,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     ShowAuthenticatedDirective,
     JwtService,
     EmployeeService,
-    ApiService
+    ApiService,
+    DeveloperService
   ],
   bootstrap: [AppComponent]
 })

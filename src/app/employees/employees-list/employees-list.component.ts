@@ -12,7 +12,7 @@ export class EmployeesListComponent implements OnInit {
 
   employees: Employee[];
   queryString: string;
-  elementsCount:number;
+  elementsCount: number;
 
   constructor(
     private route: ActivatedRoute,

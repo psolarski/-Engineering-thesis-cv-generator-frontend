@@ -1,0 +1,88 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-10 developers-list-wrapper">
+      <div *ngIf="developers" class="card">
+        <!--Card header-->
+        <div class="card-header">
+          Developers list
+        </div>
+        <!--Card block-->
+        <div class="card-block">
+          <div class="float-left entries-select-wrapper">
+            <!--Select menu-->
+            <p>Show
+              <select *ngIf="elementsCount" type="number" [(ngModel)]="elementsCount">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="25">25</option>
+              </select>
+              elements.</p>
+          </div>
+
+          <!--Create button and search-->
+          <div class="float-right create-button-wrapper">
+            <button type="button" class="btn btn-primary" routerLink="TODO">Create</button>
+          </div>
+          <div class="float-right search-input-wrapper">
+            <p>
+              Search: <input size="25" type="text" id="searchInput"
+                             [(ngModel)]="queryString" placeholder="Filter username or last name...">
+            </p>
+          </div>
+
+          <!--Table with elements -->
+          <table id="developerTable" class="table table-borderless table-striped table-bordered table-sm">
+            <thead class="text-center">
+            <tr>
+              <th class="empty-cells"></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th colspan="2"><b>Skills</b></th>
+              <th></th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><b>#</b></th>
+              <th><b>First Name</b></th>
+              <th><b>Last Name</b></th>
+              <th><b>Username</b>
+              <th>Name</th>
+              <th>Level</th>
+              <th><b>Profile</b></th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr *ngFor="let developer of developers | developersFilterPipe: queryString | slice:0:elementsCount; let i = index">
+              <th scope="row"> {{i + 1}} </th>
+              <td> {{developer.name}} </td>
+              <td> {{developer.surname}} </td>
+              <td> {{developer.username}} </td>
+              <td>
+                <div *ngFor="let skill of developer.skills">
+                  {{skill.name}}
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let skill of developer.skills">
+                  {{skill.level}}
+                </div>
+              </td>
+              <td>
+                <button type="button" class="btn developer btn-outline-info"
+                        routerLink="/profile/{{developer.username}}">
+                  Details
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--How many elements are shown-->
+        <p>Showing {{elementsCount}} of {{developers.length}}</p>
+      </div>
+    </div>
+  </div>
+</div>

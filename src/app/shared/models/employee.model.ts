@@ -3,7 +3,7 @@ import { Role } from './role.model';
 import { Skill } from './skill.model';
 import { Notification } from './notification.model';
 
-export class Employee {
+export class Employee implements IEmployee{
   name: string;
   surname: string;
   username: string;
@@ -14,6 +14,4 @@ export class Employee {
   address: Address;
 
   roles: Role[] = [];
-  skills: Skill[];
-  notifications: Notification[];
 }
