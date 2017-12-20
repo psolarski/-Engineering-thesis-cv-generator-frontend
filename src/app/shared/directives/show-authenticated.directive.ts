@@ -1,6 +1,5 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { EmployeeService } from '../services/employee.service';
-import { Subscription } from 'rxjs/Subscription';
 
 @Directive({ selector: `[showAuthenticated]` })
 export class ShowAuthenticatedDirective implements OnInit {

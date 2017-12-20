@@ -26,7 +26,6 @@ export class ProfileComponent implements OnInit {
       .switchMap((params: ParamMap) => this.employeeService.getEmployee(params.get('username')))
       .subscribe(employee => {
           this.currentEmployee = employee.body;
-        console.log("NAME OF EMPLOYEE: " + this.currentEmployee.roles[0].name);
       });
   }
 }

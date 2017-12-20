@@ -49,4 +49,12 @@ export class ApiService {
 
     return this.httpClient.get(url, {headers: this.setHeaders(), observe: 'response'});
   }
+
+  post(object: Object, path: string): Observable<any> {
+    let url = `${environment.api_url}` + path;
+
+    console.log(JSON.stringify(object));
+
+    return this.httpClient.post(url, JSON.stringify(object), { headers: this.setHeaders(), observe: 'response' });
+  }
 }

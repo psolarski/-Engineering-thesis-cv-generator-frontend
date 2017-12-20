@@ -12,12 +12,18 @@ import { GeneratorInterceptor } from './shared/interceptors/generator.intercepto
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './employees/profile/profile.module';
 import { FooterComponent } from './shared/layout/footer/footer.component';
-import { HeaderComponent } from "./shared/layout/header/header.component";
 import { ShowAuthenticatedDirective } from './shared/directives/show-authenticated.directive';
 import { EmployeesListModule } from './employees/employees-list/employees-list.module';
 import { SkillsListModule } from './developers/skills/skills-list.module';
 import { DeveloperService } from './shared/services/developer.service';
 import { EducationModule } from './developers/education/education.module';
+import { CreateEmployeeModule } from './employees/create-employee/create-employee.module';
+// import { NotificationModule } from './developers/notifications/notification.module';
+import { HeaderComponent } from './shared/layout/header/header.component';
+import { NotificationComponent } from './developers/notifications/notification.component';
+import { NotificationModule } from './developers/notifications/notification.module';
+import { HeaderModule } from './shared/layout/header/header.module';
+import { DirectiveModule } from './shared/directives/directive.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -30,9 +36,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent,
-    HeaderComponent,
-    ShowAuthenticatedDirective
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -43,18 +47,21 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     ProfileModule,
     EmployeesListModule,
     SkillsListModule,
-    EducationModule
+    EducationModule,
+    CreateEmployeeModule,
+    HeaderModule,
+    DirectiveModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,
       useClass: GeneratorInterceptor,
       multi: true
     },
-    ShowAuthenticatedDirective,
     JwtService,
     EmployeeService,
     ApiService,
-    DeveloperService
+    DeveloperService,
+    HeaderModule
   ],
   bootstrap: [AppComponent]
 })
