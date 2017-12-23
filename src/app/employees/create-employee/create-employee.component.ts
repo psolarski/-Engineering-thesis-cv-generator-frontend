@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {Location} from '@angular/common';
 import { DeveloperService } from '../../shared/services/developer.service';
-import { log } from 'util';
+import { Role } from '../../shared/models/role.model';
 
 @Component({
   selector: 'create-employee',
@@ -17,6 +17,7 @@ export class CreateEmployeeComponent implements OnInit {
   employeeForm: FormGroup;
   newEmployee: Employee;
   isSubmitting: boolean;
+  role: Role;
 
   constructor(
     private router: Router,
@@ -27,6 +28,7 @@ export class CreateEmployeeComponent implements OnInit {
   ) {
     this.isSubmitting = false;
     this.newEmployee = new Employee();
+    this.role = new Role();
   }
 
   ngOnInit(): void {
@@ -34,25 +36,36 @@ export class CreateEmployeeComponent implements OnInit {
   }
 
   submitForm() {
-    console.log("SUBMITTING");
     this.isSubmitting = true;
     if (this.employeeForm.valid) {
       console.log('form submitted');
       switch (this.employeeForm.controls['roles'].get('name').value) {
         case 'DEV': {
-          this.developerService.createDeveloper(this.employeeForm.value);
-          console.log("Created new developer");
+          console.log("CREATE DEV");
+          this.newEmployee.type = "developer";
+          this.newEmployee.creationDate = this.getCurrentDateAsString();
+          this.assigneRole("DEV");
+          this.developerService.createDeveloper(this.newEmployee);
           break;
         }
         case 'ADMIN': {
-
+          console.log("CREATE ADMIN");
+          this.newEmployee.type = "administrator";
+          this.newEmployee.creationDate = this.getCurrentDateAsString();
+          this.assigneRole("ADMIN");
+          this.employeeService.createEmployee(this.newEmployee);
           break;
         }
         case 'HR': {
-
+          console.log("CREATE HR");
+          this.newEmployee.type = "human-resource";
+          this.newEmployee.creationDate = this.getCurrentDateAsString();
+          this.assigneRole("HR");
+          this.employeeService.createEmployee(this.newEmployee);
           break;
         }
       }
+      console.log(this.newEmployee);
       this.router.navigate(["/employees"]);
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
@@ -155,5 +168,15 @@ export class CreateEmployeeComponent implements OnInit {
 
   goBackClicked() : void {
     this.location.back();
+  }
+
+  private assigneRole(roleName: string) {
+    this.role.name = roleName;
+    this.newEmployee.roles = [];
+    this.newEmployee.roles[0] = this.role;
+  }
+
+  private getCurrentDateAsString(): string {
+    return new Date().toISOString().substring(0, 10);
   }
 }

@@ -9,7 +9,6 @@ import 'rxjs/add/observable/of';
 
 import { JwtService } from './jwt.service';
 import { environment } from '../../../environments/environment';
-import { Employee } from '../models/employee.model';
 
 @Injectable()
 export class ApiService {
@@ -21,7 +20,7 @@ export class ApiService {
   private setHeaders(): HttpHeaders {
     const headersConfig = {
       'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Accept': 'application/json',
     };
 
     if (this.jwtService.getToken()) {
@@ -50,11 +49,12 @@ export class ApiService {
     return this.httpClient.get(url, {headers: this.setHeaders(), observe: 'response'});
   }
 
-  post(object: Object, path: string): Observable<any> {
+  post(object: Object, path: string) {
     let url = `${environment.api_url}` + path;
-
-    console.log(JSON.stringify(object));
-
-    return this.httpClient.post(url, JSON.stringify(object), { headers: this.setHeaders(), observe: 'response' });
+    
+    return this.httpClient.post<Object>(url,
+                                        JSON.stringify(object),
+                                    { headers: this.setHeaders(), observe: 'response' })
+      .subscribe();
   }
 }

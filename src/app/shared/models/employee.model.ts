@@ -11,8 +11,9 @@ export class Employee implements IEmployee{
   token: string;
   email: string;
   phone: number;
-  creationDate: Date;
-  address: Address;
+  type: string;
+  creationDate: string;
+  address: Address = new Address;
 
   roles: Role[] = [];
 }

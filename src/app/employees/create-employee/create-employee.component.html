@@ -22,6 +22,7 @@
                     formControlName="name"
                     placeholder="Name"
                     class="form-control"
+                    [(ngModel)]="newEmployee.name"
                     type="text"/>
                   <field-error-display
                     [displayError] = "isFieldValid('name')"
@@ -162,6 +163,7 @@
                            type="radio"
                            name="name"
                            id="inlineAdminRole"
+                           [(ngModel)]="newEmployee.roles"
                            value="ADMIN">
 
                     Administrator
@@ -174,6 +176,7 @@
                          type="radio"
                          name="name"
                          id="inlineHRRole"
+                         [(ngModel)]="newEmployee.roles"
                          value="HR">
 
                   Human Resources
@@ -186,6 +189,7 @@
                            type="radio"
                            name="name"
                            id="inlineDEVRole"
+                           [(ngModel)]="newEmployee.roles"
                            value="DEV">
 
                     Developer
@@ -214,7 +218,9 @@
                       formControlName="city"
                       placeholder="City"
                       class="form-control"
+                      [(ngModel)]="newEmployee.address.city"
                       type="text"/>
+
                     <field-error-display
                       [displayError] = "isFieldValid('address.city')"
                       [formControl]="employeeForm.controls['address'].controls['city']"
@@ -231,8 +237,10 @@
                       id="street"
                       formControlName="street"
                       placeholder="Street"
+                      [(ngModel)]="newEmployee.address.street"
                       class="form-control"
                       type="text"/>
+
                     <field-error-display
                       [displayError] = "isFieldValid('address.street')"
                       [formControl]="employeeForm.controls['address'].controls['street']"
@@ -250,7 +258,9 @@
                       formControlName="number"
                       placeholder="Number"
                       class="form-control"
+                      [(ngModel)]="newEmployee.address.number"
                       type="number"/>
+
                     <field-error-display
                       [displayError] = "isFieldValid('address.number')"
                       [formControl]="employeeForm.controls['address'].controls['number']"
@@ -259,6 +269,7 @@
                   </div>
                 </fieldset>
               </div>
+
             </div>
             <!--Submit-->
             <div class="card-footer">
@@ -279,3 +290,4 @@
     </div>
   </div>
 </div>
+

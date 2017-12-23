@@ -11,6 +11,7 @@ export class Developer implements IEmployee {
   password: string;
   token: string;
   email: string;
+  creationDate: string;
   phone: number;
 
   roles: Role[] = [];

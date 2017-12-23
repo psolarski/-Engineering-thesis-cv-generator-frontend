@@ -19,7 +19,7 @@ export class DeveloperService {
     return this.apiService.get("developers/developer/" + username);
   }
 
-  createDeveloper(newDeveloper: Developer) {
-    this.apiService.post(newDeveloper, 'developers/developer');
+  createDeveloper(newDeveloper: Object) {
+    this.apiService.post(newDeveloper, 'developers/developer/');
   }
 }

@@ -126,6 +126,14 @@ export class EmployeeService {
 
 
   getEmployee(username: string): Observable<any> {
-    return this.apiService.get("employees/employee/"+ username);
+    return this.apiService.get("employees/employee/" + username);
+  }
+
+  /**
+   * Create new Employee
+   * @param {Employee} newEmployee body
+   */
+  createEmployee(newEmployee: Employee) {
+    this.apiService.post(newEmployee, "employees/employee/");
   }
 }
