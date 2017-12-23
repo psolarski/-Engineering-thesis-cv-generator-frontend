@@ -22,10 +22,8 @@ export class NotificationComponent implements OnInit {
   ngOnInit(): void {
     this.employeeService.currentEmployee.subscribe(
       data => {
-        console.log("CURRENT EMPLOYEE USERNAME " + data.username);
         this.developerService.getDeveloper(data.username).subscribe(
           data => {
-            console.log("CURRENT DEVELOPER USERNAME " + data.body.username);
             this.notifications = data.body.notifications;
             return this.notifications;
           }

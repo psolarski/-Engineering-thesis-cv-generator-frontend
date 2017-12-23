@@ -14,7 +14,6 @@ export class DeveloperDirective implements OnInit {
 
   ngOnInit() {
     this.employeeService.currentEmployee.subscribe(data => {
-      console.log("DEVELOPER: " + (data.roles.filter(function(e) { return e.name === 'DEV'; }).length > 0));
       if (data.roles.filter(function(e) { return e.name === 'DEV'; }).length > 0) {
         this.viewContainer.createEmbeddedView(this.templateRef);
       } else {

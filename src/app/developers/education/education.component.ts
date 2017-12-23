@@ -24,7 +24,6 @@ export class EducationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("Getting developers list");
     this.developerService.getDevelopers()
       .subscribe(developers => {
         this.developers = developers.body.list;

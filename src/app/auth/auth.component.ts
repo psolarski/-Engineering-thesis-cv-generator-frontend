@@ -35,7 +35,6 @@ export class AuthComponent {
     this.errors = new Errors();
 
     this.credentials = this.authForm.value;
-    // console.log(this.credentials);
     this.employeeService.attemptAuth(this.credentials)
       .subscribe(data => {
         setTimeout(() => {
