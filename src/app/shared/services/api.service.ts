@@ -29,12 +29,16 @@ export class ApiService {
     return new HttpHeaders(headersConfig);
   };
 
-  put(path: string, body: Object): Observable<any> {
+  put(path: string, body: Object) {
+    let url = environment.api_url + path;
+
+    console.log(url);
+    console.log(JSON.stringify(body));
     return this.httpClient.put(
-      `${environment.api_url}${path}`,
+      url,
       JSON.stringify(body),
       { headers: this.setHeaders(), observe: 'response' }
-    )
+    ).subscribe();
   }
 
   login(credentials: Object): Observable<any> {
@@ -51,7 +55,7 @@ export class ApiService {
 
   post(object: Object, path: string) {
     let url = `${environment.api_url}` + path;
-    
+
     return this.httpClient.post<Object>(url,
                                         JSON.stringify(object),
                                     { headers: this.setHeaders(), observe: 'response' })

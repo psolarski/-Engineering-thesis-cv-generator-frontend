@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CreateEmployeeComponent } from './create-employee.component';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
-import { FieldErrorDisplayComponent } from '../../shared/validations/error/field-error-display.component';
+import { FieldErrorDisplayModule } from '../../shared/validations/error/field-error-display.module';
 
 const createEmployeeRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -16,14 +16,14 @@ const createEmployeeRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     createEmployeeRouting,
     SharedModule,
-
+    FieldErrorDisplayModule
   ],
   declarations: [
-    CreateEmployeeComponent,
-    FieldErrorDisplayComponent
+    CreateEmployeeComponent
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    FieldErrorDisplayModule
   ]
 })
 export class CreateEmployeeModule {}

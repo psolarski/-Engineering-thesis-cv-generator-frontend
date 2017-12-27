@@ -136,4 +136,11 @@ export class EmployeeService {
   createEmployee(newEmployee: Employee) {
     this.apiService.post(newEmployee, "employees/employee/");
   }
+
+  /**
+   * Update Employees Password
+   */
+  changePassword(password: Object, username: string) {
+    this.apiService.put("employees/employee/" + username + "/password/", password)
+  }
 }

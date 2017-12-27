@@ -4,14 +4,14 @@
     <div class="col-xl-1"></div>
 
     <!-- Profile card -->
-    <div class="col-sm-6 fonts">
+    <div class="col-sm-6 fonts" *ngIf="(currentEmployee)">
       <div class="card mx-auto">
         <div class="card-header">
-          My Profile
+          {{currentEmployee.username}} Profile
         </div>
 
         <!-- Card block content -->
-        <div class="card-block card-content" *ngIf="(currentEmployee)">
+        <div class="card-block card-content">
           <!--Profile picture-->
           <div class="mx-auto text-center">
               <div>
@@ -59,8 +59,9 @@
         </div>
 
         <div class="card-footer  text-right">
-          <button type="button" class="btn btn-sm btn-warning">Edit</button>
-          <button type="button" class="btn btn-sm btn-info">Generate CV</button>
+          <button type="button" class="btn btn btn-warning">Edit</button>
+          <button type="button" routerLink="/profile/{{currentEmployee.username}}/password" class="btn btn btn-warning">Change Password</button>
+          <button type="button" class="btn btn btn-info">Generate CV</button>
         </div>
       </div>
     </div>
