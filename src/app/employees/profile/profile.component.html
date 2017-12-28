@@ -7,61 +7,147 @@
     <div class="col-sm-6 fonts" *ngIf="(currentEmployee)">
       <div class="card mx-auto">
         <div class="card-header">
-          {{currentEmployee.username}} Profile
+
+          <!--Navbars-->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" href="#profile" data-toggle="tab" role="tab">{{currentEmployee.username}} Profile</a>
+            </li>
+            <li *showDeveloper class="nav-item">
+              <a class="nav-link" href="#education" data-toggle="tab" role="tab">Education</a>
+            </li>
+            <li *showDeveloper class="nav-item">
+              <a class="nav-link" href="#projects" data-toggle="tab" role="tab">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a *showDeveloper class="nav-link" href="#skills" data-toggle="tab" role="tab">Skills</a>
+            </li>
+          </ul>
         </div>
 
         <!-- Card block content -->
-        <div class="card-block card-content">
-          <!--Profile picture-->
-          <div class="mx-auto text-center">
-              <div>
-                <img class="img-thumbnail  profile-picture" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div class="tab-pane active" id="profile" role="tabpanel">
+            <div class="card-block card-content">
+              <!--Profile picture-->
+              <div class="mx-auto text-center">
+                <div>
+                  <img class="img-thumbnail  profile-picture" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg">
+                </div>
+                <div class="text-center">{{currentEmployee.name}} {{currentEmployee.surname}}</div>
               </div>
-            <div class="text-center">{{currentEmployee.name}} {{currentEmployee.surname}}</div>
-          </div>
-          <div class="bottom-border"></div>
-          <!--Username field-->
-          <div class="row">
-            <div class="card-text col-sm-5"> Username:</div>
-            <div class="col-sm-5">{{currentEmployee.username}}</div>
-            <div class="bottom-border"></div>
-          </div>
-          <!--Email field-->
-          <div class="row">
-            <div class="card-text col-sm-5"> Email:</div>
-            <div class="col-sm-5">{{currentEmployee.email}}</div>
-            <div class="bottom-border"></div>
-          </div>
-          <!--Phone field-->
-          <div class="row">
-            <div class="card-text col-sm-5"> Phone:</div>
-            <div class="col-sm-5">{{currentEmployee.phone}}</div>
-            <div class="bottom-border"></div>
-          </div>
-          <!--Join date field-->
-          <div class="row">
-            <div class="card-text col-sm-5"> Date of Joining:</div>
-            <div class="col-sm-5">{{currentEmployee.creationDate | date: 'dd-MM-yyyy'}}</div>
-            <div class="bottom-border"></div>
-          </div>
-          <!--City filed-->
-          <div class="row">
-            <div class="card-text col-sm-5">City:</div>
-            <div class="col-sm-5">{{currentEmployee.address.city}}</div>
-            <div class="bottom-border"></div>
-          </div>
-          <!--Street fields-->
-          <div class="row">
-            <div class="card-text col-sm-5">Street:</div>
-            <div class="col-sm-5">{{currentEmployee.address.street}} {{currentEmployee.address.number}}</div>
-            <div class="bottom-border"></div>
-          </div>
-        </div>
+              <div class="bottom-border"></div>
+              <!--Username field-->
+              <div class="row">
+                <div class="card-text col-sm-5"> Username:</div>
+                <div class="col-sm-5">{{currentEmployee.username}}</div>
+                <div class="bottom-border"></div>
+              </div>
+              <!--Email field-->
+              <div class="row">
+                <div class="card-text col-sm-5"> Email:</div>
+                <div class="col-sm-5">{{currentEmployee.email}}</div>
+                <div class="bottom-border"></div>
+              </div>
+              <!--Phone field-->
+              <div class="row">
+                <div class="card-text col-sm-5"> Phone:</div>
+                <div class="col-sm-5">{{currentEmployee.phone}}</div>
+                <div class="bottom-border"></div>
+              </div>
+              <!--Join date field-->
+              <div class="row">
+                <div class="card-text col-sm-5"> Date of Joining:</div>
+                <div class="col-sm-5">{{currentEmployee.creationDate | date: 'dd-MM-yyyy'}}</div>
+                <div class="bottom-border"></div>
+              </div>
+              <!--City filed-->
+              <div class="row">
+                <div class="card-text col-sm-5">City:</div>
+                <div class="col-sm-5">{{currentEmployee.address.city}}</div>
+                <div class="bottom-border"></div>
+              </div>
+              <!--Street fields-->
+              <div class="row">
+                <div class="card-text col-sm-5">Street:</div>
+                <div class="col-sm-5">{{currentEmployee.address.street}} {{currentEmployee.address.number}}</div>
+                <div class="bottom-border"></div>
+              </div>
+            </div>
 
-        <div class="card-footer  text-right">
-          <button type="button" class="btn btn btn-warning">Edit</button>
-          <button type="button" routerLink="/profile/{{currentEmployee.username}}/password" class="btn btn btn-warning">Change Password</button>
-          <button type="button" class="btn btn btn-info">Generate CV</button>
+            <div class="card-footer  text-right">
+              <button type="button" class="btn btn btn-warning">Edit</button>
+              <button type="button" routerLink="/profile/{{currentEmployee.username}}/password" class="btn btn btn-warning">Change Password</button>
+              <button type="button" class="btn btn btn-info">Generate CV</button>
+            </div>
+          </div>
+
+          <!--Education-->
+          <div *ngIf="currentDeveloper" role="tabpanel" class="tab-pane fade" id="education">
+            <div class="card-block card-content">
+              <div *ngFor="let education of currentDeveloper.educations  let i = index">
+              <!--Each education-->
+                <div class="row">
+                  <div class="col-sm-6 font-weight-bold">{{education.university}}</div>
+                  <div class="col-sm-5">{{education.startDate | date: 'MM.yyyy'}} - {{education.endDate | date: 'MM.yyyy'}}</div>
+                  <div class="bottom-border"></div>
+                  <div class="col-sm-6 font-weight-normal">{{education.faculty}}</div>
+                  <div class="col-sm-5 font-weight-normal">{{education.specialization}}</div>
+                  <div class="bottom-border"></div>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer  text-right">
+              <button type="button" class="btn btn btn-success">Add Project</button>
+            </div>
+          </div>
+
+          <!--Projects-->
+          <div *ngIf="currentDeveloper" role="tabpanel" class="tab-pane fade" id="projects">
+            <div class="card-block card-content">
+              <div *ngFor="let project of currentDeveloper.projects  let i = index">
+                <!--Each project-->
+                <div class="row">
+                  <div class="col-sm-6 font-weight-bold">{{project.company}},  {{project.city}}</div>
+                  <div class="col-sm-5">{{project.startDate | date: 'MM.yyyy'}} - {{project.endDate | date: 'MM.yyyy'}}</div>
+                  <div class="bottom-border"></div>
+                  <div class="col-sm-6 font-weight-normal">{{project.position}}</div>
+                  <div class="col-sm-5 font-weight-normal">{{project.description}}</div>
+                  <div class="bottom-border"></div>
+                  <hr>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer  text-right">
+              <button type="button" class="btn btn btn-success">Add Education</button>
+            </div>
+          </div>
+
+          <!--Skills Tab-->
+          <div *ngIf="currentDeveloper" role="tabpanel" class="tab-pane fade" id="skills">
+              <div class="card-block card-content">
+                <div *ngFor="let skill of currentDeveloper.skills  let i = index">
+                <!--Skill name-->
+                  <div class="row">
+                    <div class="col-sm-2"></div>
+                    <div class="card-text col-sm-4">Name: &nbsp;&nbsp; {{skill.name}}</div>
+                        <!--Skill level-->
+                      <div ngSwitch={{i%3}} class="col-sm-4">
+                          <h6><span *ngSwitchCase="0" class="badge badge-success">{{skill.level}}</span></h6>
+                          <h6><span *ngSwitchCase="1" class="badge badge-secondary">{{skill.level}}</span></h6>
+                          <h6><span *ngSwitchCase="2" class="badge badge-info">{{skill.level}}</span></h6>
+                        <h6><span *ngSwitchDefault class="badge badge-warning">{{skill.level}}</span></h6>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer  text-right">
+                <button type="button" class="btn btn btn-success">Add Skill</button>
+              </div>
+          </div>
+
         </div>
       </div>
     </div>

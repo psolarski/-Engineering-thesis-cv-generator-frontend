@@ -50,7 +50,7 @@ export class EmployeeService {
 
   mockLogin() {
     let credentials = {
-      username: "admin",
+      username: "dev1",
       password: "password",
       type: "developer"
     };

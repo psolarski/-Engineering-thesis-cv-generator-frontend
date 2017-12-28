@@ -20,3 +20,7 @@
   position: relative;
   bottom: 2rem;
 }
+
+hr {
+  width: 90%;
+}

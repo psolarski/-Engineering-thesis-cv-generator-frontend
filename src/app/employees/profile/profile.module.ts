@@ -3,6 +3,7 @@ import { ProfileComponent } from './profile.component';
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
+import { DirectiveModule } from '../../shared/directives/directive.module';
 
 const profileRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -15,7 +16,8 @@ const profileRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     SharedModule,
-    profileRouting
+    profileRouting,
+    DirectiveModule
   ],
   declarations:[
     ProfileComponent
