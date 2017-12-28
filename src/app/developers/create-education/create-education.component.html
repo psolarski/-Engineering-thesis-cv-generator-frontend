@@ -1,0 +1,134 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-10 top-wrapper">
+      <div class="card">
+        <div class="card-header">
+          <h3>Create new education</h3>
+        </div>
+        <div class="card-block">
+          <form [formGroup]="educationForm" (ngSubmit)="submitForm()">
+            <fieldset [disabled]="isSubmitting">
+              <div class="text-sm-left header-wrapper">
+                <h5>Employee data</h5>
+              </div>
+              <div class="row">
+                <!--Developer university-->
+                <fieldset class="form-group col-md-6">
+                  <label for="university" class="col-md-8 col-form-label  required">University</label>
+                  <div class="col-md-10">
+                    <input
+                      id="university"
+                      formControlName="university"
+                      placeholder="University"
+                      class="form-control"
+                      [(ngModel)]="newEducation.university"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('university')"
+                      [formControl]="educationForm.controls['university']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <!--Developer faculty-->
+                <fieldset class="form-group col-md-6">
+                  <label for="faculty" class="col-md-8 col-form-label  required">Faculty</label>
+                  <div class="col-md-10">
+                    <input
+                      id="faculty"
+                      formControlName="faculty"
+                      placeholder="Faculty"
+                      [(ngModel)]="newEducation.faculty"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('faculty')"
+                      [formControl]="educationForm.controls['faculty']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <!--Developer specialization-->
+                <fieldset class="form-group col-md-6">
+                  <label for="specialization" class="col-md-8 col-form-label  required">Specialization</label>
+                  <div class="col-md-10">
+                    <input
+                      id="specialization"
+                      formControlName="specialization"
+                      placeholder="Specialization"
+                      [(ngModel)]="newEducation.specialization"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('specialization')"
+                      [formControl]="educationForm.controls['specialization']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <!--Education start date -->
+                <fieldset class="form-group col-md-6">
+                  <label for="startDate" class="col-md-8 col-form-label  required">Start Date</label>
+                  <div class="col-md-8">
+                    <input
+                      id="startDate"
+                      formControlName="startDate"
+                      placeholder="Start Date"
+                      [(ngModel)]="newEducation.startDate"
+                      class="form-control"
+                      type="date"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('startDate')"
+                      [formControl]="educationForm.controls['startDate']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <!--Education end date-->
+                <fieldset class="form-group col-md-6">
+                  <label for="endDate" class="col-md-8 col-form-label  required">End Date</label>
+                  <div class="col-md-8">
+                    <input
+                      id="endDate"
+                      formControlName="endDate"
+                      placeholder="End Date"
+                      [(ngModel)]="newEducation.endDate"
+                      class="form-control"
+                      type="date"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('endDate')"
+                      [formControl]="educationForm.controls['endDate']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!--Submit-->
+              <div class="card-footer">
+                <button class="btn btn-md btn-info btn-lg" type="button" (click)="goBackClicked()">
+                  Back
+                </button>
+                <button class="btn btn-md btn-success btn-lg float-right" type="submit">
+                  Create
+                </button>
+                <button class="btn btn-md btn-warning btn-lg float-right" type="button" (click)="clearForm()">
+                  Clear
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

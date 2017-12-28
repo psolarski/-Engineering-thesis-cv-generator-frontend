@@ -21,6 +21,7 @@ import { HeaderModule } from './shared/layout/header/header.module';
 import { DirectiveModule } from './shared/directives/directive.module';
 import { ChangePasswordModule } from './employees/change-password/change-password.module';
 import { FieldErrorDisplayModule } from './shared/validations/error/field-error-display.module';
+import { CreateEducationModule } from './developers/create-education/create-education.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -49,7 +50,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     HeaderModule,
     DirectiveModule,
     ChangePasswordModule,
-    FieldErrorDisplayModule
+    FieldErrorDisplayModule,
+    CreateEducationModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

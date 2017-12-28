@@ -16,13 +16,10 @@ export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
-  ) {
-    this.generateRandomNumber();
-  }
+  ) {}
 
   currentEmployee: Employee;
   currentDeveloper: Developer;
-  randomNumber: number;
 
   ngOnInit(): void {
     this.route.paramMap
@@ -33,9 +30,5 @@ export class ProfileComponent implements OnInit {
             this.currentDeveloper = employee.body;
           }
       });
-  }
-
-  generateRandomNumber() {
-    this.randomNumber = Math.floor(Math.random() * (6 - 1 + 1)) + 1;
   }
 }
