@@ -134,7 +134,7 @@ export class EmployeeService {
    * @param {Employee} newEmployee body
    */
   createEmployee(newEmployee: Employee) {
-    this.apiService.post(newEmployee, "employees/employee/");
+    this.apiService.post("employees/employee/", newEmployee).subscribe();
   }
 
   /**

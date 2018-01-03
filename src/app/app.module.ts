@@ -22,6 +22,9 @@ import { DirectiveModule } from './shared/directives/directive.module';
 import { ChangePasswordModule } from './employees/change-password/change-password.module';
 import { FieldErrorDisplayModule } from './shared/validations/error/field-error-display.module';
 import { CreateEducationModule } from './developers/create-education/create-education.module';
+import { CvGenerationModule } from './developers/cv-generation/cv-generation.module';
+import { HttpModule } from '@angular/http';
+import { CreateProjectModule } from './developers/create-project/create-project.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -51,7 +54,10 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     DirectiveModule,
     ChangePasswordModule,
     FieldErrorDisplayModule,
-    CreateEducationModule
+    CreateEducationModule,
+    CvGenerationModule,
+    HttpModule,
+    CreateProjectModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

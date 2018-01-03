@@ -1,0 +1,153 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-10 top-wrapper">
+      <div class="card">
+        <div class="card-header">
+          <h3>Create new project</h3>
+        </div>
+        <div class="card-block">
+          <form [formGroup]="projectForm" (ngSubmit)="submitForm()">
+            <fieldset [disabled]="isSubmitting">
+              <div class="text-sm-left header-wrapper">
+                <h5>Employee data</h5>
+              </div>
+              <div class="row">
+                <!--Developer Project Company-->
+                <fieldset class="form-group col-md-6">
+                  <label for="company" class="col-md-8 col-form-label  required">Company</label>
+                  <div class="col-md-10">
+                    <input
+                      id="company"
+                      formControlName="company"
+                      placeholder="Company"
+                      class="form-control"
+                      [(ngModel)]="newProject.company"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('company')"
+                      [formControl]="projectForm.controls['company']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <!--Developer Project Position-->
+                <fieldset class="form-group col-md-6">
+                  <label for="position" class="col-md-8 col-form-label  required">Position</label>
+                  <div class="col-md-10">
+                    <input
+                      id="position"
+                      formControlName="position"
+                      placeholder="Position"
+                      [(ngModel)]="newProject.position"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('position')"
+                      [formControl]="projectForm.controls['position']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <!--Developer Project City-->
+                <fieldset class="form-group col-md-6">
+                  <label for="city" class="col-md-8 col-form-label  required">City</label>
+                  <div class="col-md-10">
+                    <input
+                      id="city"
+                      formControlName="city"
+                      placeholder="City"
+                      [(ngModel)]="newProject.city"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('city')"
+                      [formControl]="projectForm.controls['city']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <!--Developer Project Description-->
+                <fieldset class="form-group col-md-6">
+                  <label for="description" class="col-md-8 col-form-label  required">Description</label>
+                  <div class="col-md-10">
+                    <input
+                      id="description"
+                      formControlName="description"
+                      placeholder="Description"
+                      [(ngModel)]="newProject.description"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('description')"
+                      [formControl]="projectForm.controls['description']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <!--Project start date -->
+                <fieldset class="form-group col-md-6">
+                  <label for="startDate" class="col-md-8 col-form-label  required">Start Date</label>
+                  <div class="col-md-8">
+                    <input
+                      id="startDate"
+                      formControlName="startDate"
+                      placeholder="Start Date"
+                      [(ngModel)]="newProject.startDate"
+                      class="form-control"
+                      type="date"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('startDate')"
+                      [formControl]="projectForm.controls['startDate']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <!--Project end date-->
+                <fieldset class="form-group col-md-6">
+                  <label for="endDate" class="col-md-8 col-form-label  required">End Date</label>
+                  <div class="col-md-8">
+                    <input
+                      id="endDate"
+                      formControlName="endDate"
+                      placeholder="End Date"
+                      [(ngModel)]="newProject.endDate"
+                      class="form-control"
+                      type="date"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('endDate')"
+                      [formControl]="projectForm.controls['endDate']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <!--Submit-->
+              <div class="card-footer">
+                <button class="btn btn-md btn-info btn-lg" type="button" (click)="goBackClicked()">
+                  Back
+                </button>
+                <button class="btn btn-md btn-success btn-lg float-right" type="submit">
+                  Create
+                </button>
+                <button class="btn btn-md btn-warning btn-lg float-right" type="button" (click)="clearForm()">
+                  Clear
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

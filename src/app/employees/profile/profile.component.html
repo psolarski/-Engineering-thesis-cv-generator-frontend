@@ -79,7 +79,7 @@
             <div class="card-footer  text-right">
               <button type="button" class="btn btn btn-warning">Edit</button>
               <button type="button" routerLink="/profile/{{currentEmployee.username}}/password" class="btn btn btn-warning">Change Password</button>
-              <button type="button" class="btn btn btn-info">Generate CV</button>
+              <button type="button" class="btn btn btn-info" routerLink="/profile/{{currentEmployee.username}}/cv-generation">Generate CV</button>
             </div>
           </div>
 
@@ -122,7 +122,7 @@
               </div>
             </div>
             <div class="card-footer  text-right">
-              <button type="button" class="btn btn btn-success">Add Project</button>
+              <button type="button" class="btn btn btn-success" routerLink="/profile/{{currentDeveloper.username}}/create-project/">Add Project</button>
             </div>
           </div>
 

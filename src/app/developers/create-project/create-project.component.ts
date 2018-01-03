@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Location } from '@angular/common';
 import { DeveloperService } from '../../shared/services/developer.service';
-import {Location} from '@angular/common';
-import { Education } from '../../shared/models/education.model';
-
+import { Project } from '../../shared/models/project.model';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "create-education",
-  templateUrl: './create-education.component.html',
-  styleUrls: ['./create-education.component.css']
+  selector: 'create-project',
+  templateUrl: './create-project.component.html',
+  styleUrls: ['./create-project.component.css']
 })
-export class CreateEducationComponent implements OnInit {
+export class CreateProjectComponent {
 
-  educationForm: FormGroup;
-  newEducation: Education;
+  projectForm: FormGroup;
   isSubmitting: boolean;
   developerUsername: string;
+  newProject: Project;
 
   constructor(
     private router: Router,
@@ -25,18 +24,18 @@ export class CreateEducationComponent implements OnInit {
     private location: Location,
     private developerService: DeveloperService
   ) {
-    this.newEducation = new Education();
+    this.newProject = new Project();
     this.isSubmitting = false;
   }
 
   submitForm() {
     this.isSubmitting = true;
-    if (this.educationForm.valid) {
-      console.log(this.newEducation);
-      this.developerService.addEducation(this.newEducation, this.developerUsername);
+    if (this.projectForm.valid) {
+      console.log(this.newProject);
+      this.developerService.addProject(this.newProject, this.developerUsername);
       this.router.navigate(["/profile/" + this.developerUsername]);
     } else {
-      this.validateAllFormFields(this.educationForm);
+      this.validateAllFormFields(this.projectForm);
       this.isSubmitting = false;
     }
   }
@@ -50,13 +49,13 @@ export class CreateEducationComponent implements OnInit {
 
   isFieldValid(field: string) {
     return (
-      (!this.educationForm.get(field).valid && this.educationForm.get(field).touched) ||
-      (this.educationForm.get(field).untouched && this.isSubmitting)
+      (!this.projectForm.get(field).valid && this.projectForm.get(field).touched) ||
+      (this.projectForm.get(field).untouched && this.isSubmitting)
     );
   }
 
   clearForm() {
-    this.educationForm.reset();
+    this.projectForm.reset();
     this.isSubmitting = false;
   }
 
@@ -77,20 +76,25 @@ export class CreateEducationComponent implements OnInit {
 
 
   private createForm(): void {
-    this.educationForm = this.formBuilder.group({
-      'university': [ '',
+    this.projectForm = this.formBuilder.group({
+      'description': [ '',
         [ Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(80) ]
-      ],
-      'faculty': [ '',
-        [ Validators.required,
-          Validators.minLength(2),
+          Validators.minLength(5),
           Validators.maxLength(100) ]
       ],
-      'specialization': [ '',
+      'position': [ '',
         [ Validators.required,
-          Validators.minLength(2),
+          Validators.minLength(10),
+          Validators.maxLength(100) ]
+      ],
+      'city': [ '',
+        [ Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100) ]
+      ],
+      'company': [ '',
+        [ Validators.required,
+          Validators.minLength(3),
           Validators.maxLength(100) ]
       ],
       'startDate': [ '',
