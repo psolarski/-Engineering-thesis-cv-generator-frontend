@@ -60,37 +60,11 @@ export class ApiService {
   post(path: string, object: Object) {
     let url = `${environment.api_url}` + path;
 
+    console.log("BODY : " + JSON.stringify(object));
     return this.httpClient.post<Object>(url,
                                         JSON.stringify(object),
                                     { headers: this.setHeaders(), observe: 'response' })
   }
-
-  receivePdf(path: string) {
-    console.log("PPPPPPPPPPDDDDDDDDDDDDDDDDDDDDDDDDFFFFFFFFFFFFFFFFFF");
-    let url = environment.api_url + path;
-
-    let headerJson = {
-      'Accept': 'application/pdf',
-      'Authorization': this.jwtService.getToken().toString(),
-      responseType: 'ArrayBuffer'
-    };
-    let headers = new HttpHeaders(headerJson);
-
-    this.httpClient.get(url, { headers, observe: 'response' })
-      .subscribe(data => {
-        console.log("BOOOOOOOOODDDDDDDDDDDDDDDDYYYYYYYYYYYYY");
-        // console.log("BODY: " + data.body);
-      })
-    // .map(data => {
-    //   console.log("BOOOOOOOOODDDDDDDDDDDDDDDDYYYYYYYYYYYYY");
-    //   console.log("BODY: " + data.body);
-    //   let file = new Blob([data.body], {type: 'application/pdf'});
-    //   console.log(file);
-    //
-    //   return URL.createObjectURL(file);
-  // })
-  }
-
 
   /* Old version http */
   getDeveloperPdf(path: string): Observable<any> {
@@ -106,27 +80,4 @@ export class ApiService {
       { responseType: ResponseContentType.Blob, headers }
       )
   }
-
-
-  // return this.httpClient.get(url, { headers }).map(
-  //   (data:any) => { // data type is Response, but since _body is private field i changed it to any
-  //
-  //     let file3 = new Blob([data._body], {type: 'application/pdf'});
-  //     return this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(file3));
-  //   },
-  //   error => {
-  //     console.log(error);
-  //   })
-
-  // public getConsultationDocumentPDF (pHash:string):Observable<Response> {
-  //   return this.httpClient.get(
-  //     "https://***********.idshost.fr/ws/********xfer/ws/download/"+pHash,
-  //     {
-  //       headers: new HttpHeaders({
-  //         "Access-Control-Allow-Origin": "*",
-  //         "Authorization": "Bearer "
-  //       }),
-  //       responseType: ResponseContentType.ArrayBuffer // YOU NEED THAT
-  //     }
-  //   );
 }

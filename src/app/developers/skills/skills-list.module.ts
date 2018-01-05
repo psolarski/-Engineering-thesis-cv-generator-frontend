@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { SkillsListComponent } from './skills-list.component';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
-import { DevelopersFilterPipe } from './developers-filter.pipe';
+import { DeveloperSharedModule } from '../shared/developer.shared.module';
 
 const skillsListRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -15,15 +15,14 @@ const skillsListRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     skillsListRouting,
-    SharedModule
+    SharedModule,
+    DeveloperSharedModule
   ],
   declarations: [
-    SkillsListComponent,
-    DevelopersFilterPipe
+    SkillsListComponent
   ],
   providers: [
-    AuthGuard,
-    DevelopersFilterPipe
+    AuthGuard
   ]
 })
 export class SkillsListModule { }

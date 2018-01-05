@@ -36,4 +36,8 @@ export class DeveloperService {
   addProject(newProject: Project, developerUsername: string) {
     this.apiService.post('developers/developer/' + developerUsername + '/projects/project/', newProject).subscribe();
   }
+
+  addSkills(skills: any, developerUsername: string) {
+    this.apiService.post('developers/developer/' + developerUsername + '/skills/', skills).subscribe();
+  }
 }

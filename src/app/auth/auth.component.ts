@@ -39,7 +39,7 @@ export class AuthComponent {
       .subscribe(data => {
         setTimeout(() => {
           console.log(`Logged in, navigate!`);
-          this.router.navigate([`/profile/admin`]);
+          this.router.navigate([`/profile/` + this.credentials.username]);
         },300)
       }, error => {
       console.log(`Error during login occurred!` + error);

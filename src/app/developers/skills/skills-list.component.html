@@ -32,27 +32,27 @@
           <!--Table with elements -->
           <table id="developerTable" class="table table-borderless table-striped table-sm">
             <thead class="text-center">
-            <tr>
-              <th class="empty-cells"></th>
-              <th></th>
-              <th></th>
-              <th></th>
-              <th colspan="2"><b>Skills</b></th>
-              <th></th>
-              <th></th>
-            </tr>
-            <tr>
-              <th><b>#</b></th>
-              <th><b>First Name</b></th>
-              <th><b>Last Name</b></th>
-              <th><b>Username</b>
-              <th>Name</th>
-              <th>Level</th>
-              <th><b>Profile</b></th>
-            </tr>
+              <tr>
+                <th class="empty-cells"></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th colspan="2"><b>Skills</b></th>
+                <th></th>
+                <th></th>
+              </tr>
+              <tr>
+                <th><b>#</b></th>
+                <th><b>First Name</b></th>
+                <th><b>Last Name</b></th>
+                <th><b>Username</b>
+                <th>Name</th>
+                <th>Level</th>
+                <th><b>Profile</b></th>
+              </tr>
             </thead>
             <tbody class="text-center">
-            <tr *ngFor="let developer of developers | developersFilterPipe: queryString | slice:0:elementsCount; let i = index">
+            <tr *ngFor="let developer of developers | developerFilterPipe: queryString | slice:0:elementsCount; let i = index">
               <th scope="row"> {{i + 1}} </th>
               <td> {{developer.name}} </td>
               <td> {{developer.surname}} </td>

@@ -25,6 +25,8 @@ import { CreateEducationModule } from './developers/create-education/create-educ
 import { CvGenerationModule } from './developers/cv-generation/cv-generation.module';
 import { HttpModule } from '@angular/http';
 import { CreateProjectModule } from './developers/create-project/create-project.module';
+import { DeveloperSharedModule } from './developers/shared/developer.shared.module';
+import { CreateSkillModule } from './developers/create-skill/create-skill.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -57,7 +59,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     CreateEducationModule,
     CvGenerationModule,
     HttpModule,
-    CreateProjectModule
+    CreateProjectModule,
+    DeveloperSharedModule,
+    CreateSkillModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,
@@ -69,7 +73,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     ApiService,
     DeveloperService,
     HeaderModule,
-    FieldErrorDisplayModule
+    FieldErrorDisplayModule,
+    DeveloperSharedModule
   ],
   bootstrap: [AppComponent]
 })

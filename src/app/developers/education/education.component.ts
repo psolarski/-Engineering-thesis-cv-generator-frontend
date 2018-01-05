@@ -19,7 +19,7 @@ export class EducationComponent implements OnInit {
   constructor(
     private developerService: DeveloperService
   ) {
-    this.elementsCount = 5;
+    this.elementsCount = 15;
     this.queryString = "";
   }
 

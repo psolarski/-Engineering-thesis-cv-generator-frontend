@@ -9,9 +9,6 @@
         <div class="card-block">
           <form [formGroup]="projectForm" (ngSubmit)="submitForm()">
             <fieldset [disabled]="isSubmitting">
-              <div class="text-sm-left header-wrapper">
-                <h5>Employee data</h5>
-              </div>
               <div class="row">
                 <!--Developer Project Company-->
                 <fieldset class="form-group col-md-6">
@@ -134,13 +131,13 @@
 
               <!--Submit-->
               <div class="card-footer">
-                <button class="btn btn-md btn-info btn-lg" type="button" (click)="goBackClicked()">
+                <button class="btn btn-info" type="button" (click)="goBackClicked()">
                   Back
                 </button>
-                <button class="btn btn-md btn-success btn-lg float-right" type="submit">
+                <button class="btn btn-success float-right" type="submit">
                   Create
                 </button>
-                <button class="btn btn-md btn-warning btn-lg float-right" type="button" (click)="clearForm()">
+                <button class="btn btn-warning float-right" type="button" (click)="clearForm()">
                   Clear
                 </button>
               </div>

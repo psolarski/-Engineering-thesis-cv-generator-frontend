@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { EducationComponent } from './education.component';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
-import { DevelopersFilterPipe } from './developers-filter.pipe';
+import { DeveloperSharedModule } from '../shared/developer.shared.module';
 
 const educationRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -16,15 +16,14 @@ const educationRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     SharedModule,
-    educationRouting
+    educationRouting,
+    DeveloperSharedModule
   ],
   declarations: [
-    EducationComponent,
-    DevelopersFilterPipe
+    EducationComponent
   ],
   providers: [
-    AuthGuard,
-    DevelopersFilterPipe
+    AuthGuard
   ]
 })
 export class EducationModule {}
