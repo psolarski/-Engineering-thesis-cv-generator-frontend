@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xl-1"></div>
+
+    <!-- Profile card -->
+    <div class="col-sm-12 fonts">
+      <div class="card mx-auto">
+        <div class="card-header">
+
+          <!--Navbars-->
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="nav-item">
+              <a class="nav-link active" href="#newMail" data-toggle="tab" role="tab">Send new</a>
+            </li>
+            <li *showDeveloper class="nav-item">
+              <a class="nav-link" href="#mails" data-toggle="tab" role="tab">Mailbox</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Card block content -->
+        <div class="tab-content">
+         <!-- Tab panes -->
+         <div class="tab-pane" id="newMail" role="tabpanel">
+            <div class="card-block card-content">
+              {{outlookToken}}
+            </div>
+            <div class="card-footer  text-right">
+              <button type="button" class="btn btn btn-info">Send</button>
+            </div>
+          </div>
+
+          <div *ngIf="messages" role="tabpanel" class="tab-pane fade" id="mails">
+            <div class="card-block card-content">
+              <div *ngFor="let message of messages">
+                <h4>{{message.from.emailAddress.name}}</h4>
+                <h5>RE: {{message.subject}}</h5>
+                <p class="text-muted"><i>Received: {{message.receivedDateTime | date: "yyyy/MM/dd hh:mm:ss"}}</i></p>
+                <br>
+                <p class="text-muted">{{message.bodyPreview}}</p>
+                <div class="bottom-border"></div>
+              </div>
+            </div>
+            <div class="card-footer  text-right">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

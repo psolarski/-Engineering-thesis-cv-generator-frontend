@@ -18,6 +18,10 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/employees/">Employees</a>
       </li>
+      <li class="nav-item">
+        <a *ngIf="!isOutlookTokenAvailable" class="nav-link" href="{{outlookAuthorizationURL}}">Outlook Login</a>
+        <a *ngIf="isOutlookTokenAvailable" class="nav-link" routerLink="/outlook/">Outlook</a>
+      </li>
     </ul>
 
     <notification *showDeveloper class="nav-element"></notification>

@@ -10,6 +10,7 @@ import { Employee } from '../models/employee.model';
 import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { Observable } from 'rxjs/Observable';
+import { OutlookService } from './outlook.service';
 
 
 @Injectable()
@@ -23,7 +24,8 @@ export class EmployeeService {
 
   constructor (
     private apiService: ApiService,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    private outlookService: OutlookService
   ) {}
 
   /**
@@ -69,7 +71,6 @@ export class EmployeeService {
    * @returns {Observable<any>}
    */
   attemptAuth(credentials) {
-    console.log(credentials);
     const response = this.apiService.login(credentials);
       response.subscribe(
       data => {
@@ -88,7 +89,6 @@ export class EmployeeService {
       .subscribe(
         response => {
           this.currentEmployeeSubject.next(response.body);
-          console.log(this.currentEmployeeSubject.value);
       },
       error => error)
   }
@@ -101,6 +101,8 @@ export class EmployeeService {
   purgeAuth() {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
+    // Remove Outlook token
+    this.outlookService.destroyToken();
     // Set current employee to an empty object
     this.currentEmployeeSubject.next(new Employee());
     // Set auth status to false

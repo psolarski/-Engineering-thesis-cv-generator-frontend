@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
+import { OutlookService } from '../../services/outlook.service';
 
 @Component({
   selector: `layout-header`,
@@ -9,9 +10,12 @@ import { EmployeeService } from '../../services/employee.service';
 export class HeaderComponent implements OnInit {
 
   currentEmployeeUsername: String;
+  outlookAuthorizationURL: string;
+  isOutlookTokenAvailable: boolean;
 
   constructor(
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private outlookService: OutlookService
   ) {}
 
 
@@ -19,6 +23,9 @@ export class HeaderComponent implements OnInit {
     this.employeeService.currentEmployee.subscribe(
       data => {
         this.currentEmployeeUsername = data.username;
+        this.outlookAuthorizationURL = this.outlookService.buildAuthUrl();
+        this.isOutlookTokenAvailable = !!this.outlookService.getToken();
+        console.log("IS outlook token available: " + this.isOutlookTokenAvailable);
       }
     );
   }

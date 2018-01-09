@@ -15,7 +15,7 @@ import { Developer } from '../../shared/models/developer.model';
 export class ProfileComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private employeeService: EmployeeService,
+    private employeeService: EmployeeService
   ) {}
 
   currentEmployee: Employee;

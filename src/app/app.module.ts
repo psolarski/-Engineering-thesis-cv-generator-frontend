@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { JwtService } from './shared/services/jwt.service';
+import { OutlookService } from './shared/services/outlook.service';
 import { EmployeeService } from './shared/services/employee.service';
 import { ApiService } from './shared/services/api.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -27,14 +28,15 @@ import { HttpModule } from '@angular/http';
 import { CreateProjectModule } from './developers/create-project/create-project.module';
 import { DeveloperSharedModule } from './developers/shared/developer.shared.module';
 import { CreateSkillModule } from './developers/create-skill/create-skill.module';
+import { OutlookModule } from './employees/outlook/outlook.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
-  //   path: ``,
-  //   component: AppComponent,
-  //   canActivate: [AuthGuard]
+  //   // path: '',
+  //   // component: AppComponent,
+  //   // data: {}
   // }
-], { useHash: true });
+], { useHash: false });
 
 @NgModule({
   declarations: [
@@ -61,7 +63,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     HttpModule,
     CreateProjectModule,
     DeveloperSharedModule,
-    CreateSkillModule
+    CreateSkillModule,
+    OutlookModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,
@@ -74,7 +77,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     DeveloperService,
     HeaderModule,
     FieldErrorDisplayModule,
-    DeveloperSharedModule
+    DeveloperSharedModule,
+    OutlookService
   ],
   bootstrap: [AppComponent]
 })

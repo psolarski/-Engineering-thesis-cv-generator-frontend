@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { DeveloperService } from '../../shared/services/developer.service';
-import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import {Location} from '@angular/common';
 import { saveAs } from 'file-saver/FileSaver';
 
@@ -27,7 +27,6 @@ export class CvGenerationComponent implements OnInit {
       this.developerUsername = params['username'];
     });
 
-
     this.developerService.generatePdf(this.developerUsername)
       .subscribe(response => {
 
@@ -45,7 +44,6 @@ export class CvGenerationComponent implements OnInit {
   }
 
   saveGeneratedCv(): void {
-    // this.fileSaver.msSaveBlob(this.pdfFileUrl, this.developerUsername);
     saveAs(this.pdfFile, this.developerUsername);
   }
 }

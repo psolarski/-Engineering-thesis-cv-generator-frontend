@@ -80,4 +80,10 @@ export class ApiService {
       { responseType: ResponseContentType.Blob, headers }
       )
   }
+
+  getForOutlook(path: string, outlookToken: String): Observable<any>{
+    let url = environment.api_url + path;
+
+    return this.httpClient.get(url, {headers: this.setHeaders().append("auth_token", outlookToken.toString()), observe: 'response'});
+  }
 }
