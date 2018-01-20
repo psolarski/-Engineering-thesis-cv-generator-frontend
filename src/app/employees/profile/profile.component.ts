@@ -20,15 +20,31 @@ export class ProfileComponent implements OnInit {
 
   currentEmployee: Employee;
   currentDeveloper: Developer;
+  buttonAccess: boolean;
 
   ngOnInit(): void {
     this.route.paramMap
       .switchMap((params: ParamMap) => this.employeeService.getEmployee(params.get('username')))
       .subscribe(employee => {
           this.currentEmployee = employee.body;
+          this.buttonAccess = this.isAdminHROrOwner();
           if(this.currentEmployee.roles.filter(function(e) { return e.name === 'DEV'; }).length > 0) {
             this.currentDeveloper = employee.body;
           }
       });
   }
+
+  private isAdminHROrOwner(): boolean {
+    let username = null;
+    this.employeeService.currentEmployee.subscribe(data => {
+      username = data.username;
+    });
+
+    if (this.currentEmployee.roles.filter(function(e) { return e.name === 'ADMIN'; }).length > 0) {
+      return true;
+    } else if (this.currentEmployee.roles.filter(function(e) { return e.name === 'HR'; }).length > 0) {
+      return true;
+    } else return this.currentEmployee.username === username;
+  }
+
 }

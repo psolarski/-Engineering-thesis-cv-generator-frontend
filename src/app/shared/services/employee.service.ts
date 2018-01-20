@@ -11,6 +11,7 @@ import { ApiService } from './api.service';
 import { JwtService } from './jwt.service';
 import { Observable } from 'rxjs/Observable';
 import { OutlookService } from './outlook.service';
+import { EditEmployeeDto } from '../models/dto/edit-employee.dto';
 
 
 @Injectable()
@@ -143,6 +144,13 @@ export class EmployeeService {
    * Update Employees Password
    */
   changePassword(password: Object, username: string) {
-    this.apiService.put("employees/employee/" + username + "/password/", password)
+    this.apiService.put("employees/employee/" + username + "/password/", password).subscribe();
+  }
+
+  /*
+   * Update Employee
+   */
+  updateEmployee(path: string, employee: EditEmployeeDto): Observable<any> {
+    return this.apiService.put("/employees/employee/" + path, employee);
   }
 }

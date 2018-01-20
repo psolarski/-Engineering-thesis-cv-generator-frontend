@@ -1,11 +1,11 @@
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
   <div class="row">
 
     <div class="col-sm-12 list-wrapper">
       <div *ngIf="developers" class="card">
         <!--Card header-->
         <div class="card-header">
-          <h3>Developers list</h3>
+          <h3>Project list</h3>
         </div>
         <!--Card block-->
         <div class="card-block">
@@ -30,43 +30,43 @@
           </div>
 
           <!--Table with elements -->
-          <table id="developerTable" class="table table-borderless table-striped table-sm">
+          <table id="developerTable" class="table table-borderless table-sm table-striped">
             <thead class="text-center">
-              <tr>
-                <th class="empty-cells"></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th colspan="2"><b>Skills</b></th>
-                <th></th>
-                <th></th>
-              </tr>
-              <tr>
-                <th><b>#</b></th>
-                <th><b>First Name</b></th>
-                <th><b>Last Name</b></th>
-                <th><b>Username</b>
-                <th>Name</th>
-                <th>Level</th>
-                <th><b>Profile</b></th>
-              </tr>
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th colspan="6">Projects</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><b>#</b></th>
+              <th><b>First Name</b></th>
+              <th><b>Last Name</b></th>
+              <th><b>Username</b>
+              <th>Company</th>
+              <th>City</th>
+              <th>Position</th>
+              <th>Description</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th><b>Profile</b></th>
+            </tr>
             </thead>
-            <tbody class="text-center">
-            <tr *ngFor="let developer of developers | developerFilterPipe: queryString | slice:0:elementsCount; let i = index">
+
+            <tbody class="text-center" *ngFor="let developer of developers | developerFilterPipe: queryString  let i = index">
+            <tr *ngFor="let project of developer.projects">
               <th scope="row"> {{i + 1}} </th>
               <td> {{developer.name}} </td>
               <td> {{developer.surname}} </td>
               <td> {{developer.username}} </td>
-              <td>
-                <div *ngFor="let skill of developer.skills">
-                  {{skill.name}}
-                </div>
-              </td>
-              <td>
-                <div *ngFor="let skill of developer.skills">
-                  {{skill.level}}
-                </div>
-              </td>
+
+              <td> {{project.company}} </td>
+              <td> {{project.city}} </td>
+              <td> {{project.position}} </td>
+              <td> {{project.description}} </td>
+              <td> {{project.startDate | date: 'yyyy-MM'}} </td>
+              <td> {{project.endDate | date: 'yyyy-MM'}} </td>
               <td>
                 <button type="button" class="btn developer btn-outline-info"
                         routerLink="/profile/{{developer.username}}">

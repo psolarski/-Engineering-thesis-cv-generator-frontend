@@ -3,14 +3,11 @@ import { Developer } from '../../shared/models/developer.model';
 import { DeveloperService } from '../../shared/services/developer.service';
 
 @Component({
-  selector: 'education',
-  templateUrl: './education.component.html',
-  styleUrls: [
-    './education.component.css',
-    '../shared/developers.shared.css'
-  ]
+  templateUrl: './project.component.html',
+  styleUrls: ['./project.component.css',
+              '../shared/developers.shared.css']
 })
-export class EducationComponent implements OnInit {
+export class ProjectComponent implements OnInit {
 
   developers: Developer[];
   queryString: string;

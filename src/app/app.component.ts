@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './shared/services/employee.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OutlookService } from './shared/services/outlook.service';
 
 @Component({
@@ -20,9 +20,8 @@ export class AppComponent implements OnInit {
     this.employeeService.populate();
     this.activatedRoute.fragment.subscribe((fragment: String) => {
       if(fragment) {
-        console.log("Fragment: " + fragment);
         let outlookToken =  fragment.substr(0, fragment.indexOf('&')).substr(13, fragment.length);
-        console.log("Token: " + outlookToken);
+        // console.log("Token: " + outlookToken);
         this.outlookService.saveToken(outlookToken);
         this.router.navigate(['/outlook']);
       }

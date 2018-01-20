@@ -1,0 +1,237 @@
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-12 top-wrapper">
+      <div class="card">
+        <div class="card-header">
+          <h3>Create new employee</h3>
+        </div>
+        <div class="card-block">
+          <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
+            <fieldset [disabled]="isSubmitting">
+              <div class="text-sm-left header-wrapper">
+                <h5>Employee data</h5>
+              </div>
+              <div class="row">
+                <!--Employee name-->
+                <fieldset class="form-group col-md-5">
+                  <label for="name" class="col-md-8 col-form-label  required">Name</label>
+                  <div class="col-md-8">
+                    <input
+                      id="name"
+                      formControlName="name"
+                      placeholder="Name"
+                      class="form-control"
+                      [(ngModel)]="currentEmployee.name"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('name')"
+                      [formControl]="employeeForm.controls['name']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <!--Employee surname-->
+                <fieldset class="form-group col-md-5">
+                  <label for="surname" class="col-md-8 col-form-label  required">Surname</label>
+                  <div class="col-md-8">
+                    <input
+                      id="surname"
+                      formControlName="surname"
+                      placeholder="Surname"
+                      [(ngModel)]="currentEmployee.surname"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('surname')"
+                      [formControl]="employeeForm.controls['surname']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+              <div class="row">
+                <!--Employee email-->
+                <fieldset class="form-group col-md-5">
+                  <label for="email" class="col-md-8 col-form-label  required">Email</label>
+                  <div class="col-md-8">
+                    <input
+                      id="email"
+                      formControlName="email"
+                      placeholder="Email"
+                      [(ngModel)]="currentEmployee.email"
+                      class="form-control"
+                      type="text"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('email')"
+                      [formControl]="employeeForm.controls['email']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+
+                <fieldset class="form-group col-md-5">
+                  <label for="phone" class="col-md-8 col-form-label  required">Phone</label>
+                  <div class="col-md-8">
+                    <input
+                      id="phone"
+                      formControlName="phone"
+                      placeholder="Phone"
+                      [(ngModel)]="currentEmployee.phone"
+                      class="form-control"
+                      type="tel"/>
+                    <field-error-display
+                      [displayError] = "isFieldValid('phone')"
+                      [formControl]="employeeForm.controls['phone']"
+                      ngDefaultControl>
+                    </field-error-display>
+                  </div>
+                </fieldset>
+              </div>
+
+
+              <!--ROLES-->
+              <div formGroupName="roles" *ngIf="isAdmin()">
+                <!--Header-->
+                <!--Break-->
+                <hr/>
+                <div class="text-sm-left header-wrapper">
+                  <h5>Roles</h5>
+                </div>
+                <div class="form-group text-center">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input formControlName="name"
+                             class="form-check-input"
+                             type="radio"
+                             name="name"
+                             id="inlineAdminRole"
+                             [(ngModel)]="currentEmployee.type"
+                             value="ADMIN">
+
+                      Administrator
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input formControlName="name"
+                             class="form-check-input"
+                             type="radio"
+                             name="name"
+                             id="inlineHRRole"
+                             [(ngModel)]="currentEmployee.type"
+                             value="HR">
+
+                      Human Resources
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label">
+                      <input formControlName="name"
+                             class="form-check-input"
+                             type="radio"
+                             name="name"
+                             id="inlineDEVRole"
+                             [(ngModel)]="currentEmployee.type"
+                             value="DEV">
+
+                      Developer
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <!--Break-->
+              <hr/>
+
+              <!--Address-->
+              <div formGroupName="address">
+                <!--Header-->
+                <div class="text-sm-left header-wrapper">
+                  <h5>Address</h5>
+                </div>
+                <!--Content-->
+                <div class="row">
+                  <!--City-->
+                  <fieldset class="form-group col-sm-4">
+                    <label for="city" class="col-md-8 col-form-label  required">City</label>
+                    <div class="col-md-8">
+                      <input
+                        id="city"
+                        formControlName="city"
+                        placeholder="City"
+                        class="form-control"
+                        [(ngModel)]="currentEmployee.address.city"
+                        type="text"/>
+
+                      <field-error-display
+                        [displayError] = "isFieldValid('address.city')"
+                        [formControl]="employeeForm.controls['address'].controls['city']"
+                        ngDefaultControl>
+                      </field-error-display>
+                    </div>
+                  </fieldset>
+
+                  <!--Street-->
+                  <fieldset class="form-group col-sm-4">
+                    <label for="street" class="col-md-5 col-form-label  required">Street</label>
+                    <div class="col-md-8">
+                      <input
+                        id="street"
+                        formControlName="street"
+                        placeholder="Street"
+                        [(ngModel)]="currentEmployee.address.street"
+                        class="form-control"
+                        type="text"/>
+
+                      <field-error-display
+                        [displayError] = "isFieldValid('address.street')"
+                        [formControl]="employeeForm.controls['address'].controls['street']"
+                        ngDefaultControl>
+                      </field-error-display>
+                    </div>
+                  </fieldset>
+
+                  <!--Number-->
+                  <fieldset class="form-group col-sm-4">
+                    <label for="number" class="col-md-5 col-form-label  required">Number</label>
+                    <div class="col-md-5">
+                      <input
+                        id="number"
+                        formControlName="number"
+                        placeholder="Number"
+                        class="form-control"
+                        [(ngModel)]="currentEmployee.address.number"
+                        type="number"/>
+
+                      <field-error-display
+                        [displayError] = "isFieldValid('address.number')"
+                        [formControl]="employeeForm.controls['address'].controls['number']"
+                        ngDefaultControl>
+                      </field-error-display>
+                    </div>
+                  </fieldset>
+                </div>
+
+              </div>
+              <!--Submit-->
+              <div class="card-footer">
+                <button class="btn btn-md btn-info btn-lg" type="button" (click)="goBackClicked()">
+                  Back
+                </button>
+                <button class="btn btn-md btn-success btn-lg float-right" type="submit">
+                  Update
+                </button>
+                <button class="btn btn-md btn-warning btn-lg float-right" type="button" (click)="clearForm()">
+                  Clear
+                </button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

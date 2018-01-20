@@ -29,6 +29,8 @@ import { CreateProjectModule } from './developers/create-project/create-project.
 import { DeveloperSharedModule } from './developers/shared/developer.shared.module';
 import { CreateSkillModule } from './developers/create-skill/create-skill.module';
 import { OutlookModule } from './employees/outlook/outlook.module';
+import { ProjectModule } from './developers/projects/project.module';
+import { EditEmployeeModule } from './employees/edit-employee/edit-employee.module';
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -64,7 +66,9 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     CreateProjectModule,
     DeveloperSharedModule,
     CreateSkillModule,
-    OutlookModule
+    OutlookModule,
+    ProjectModule,
+    EditEmployeeModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

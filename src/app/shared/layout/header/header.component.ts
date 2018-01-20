@@ -25,7 +25,6 @@ export class HeaderComponent implements OnInit {
         this.currentEmployeeUsername = data.username;
         this.outlookAuthorizationURL = this.outlookService.buildAuthUrl();
         this.isOutlookTokenAvailable = !!this.outlookService.getToken();
-        console.log("IS outlook token available: " + this.isOutlookTokenAvailable);
       }
     );
   }
