@@ -33,7 +33,7 @@ export class ApiService {
     return new HttpHeaders(headersConfig);
   };
 
-  put(path: string, body: Object) {
+  put(path: string, body: Object): Observable<any> {
     let url = environment.api_url + path;
 
     console.log(url);
@@ -42,7 +42,7 @@ export class ApiService {
       url,
       JSON.stringify(body),
       { headers: this.setHeaders(), observe: 'response' }
-    ).subscribe();
+    );
   }
 
   login(credentials: Object): Observable<any> {

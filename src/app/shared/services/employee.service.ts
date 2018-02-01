@@ -143,8 +143,8 @@ export class EmployeeService {
   /**
    * Update Employees Password
    */
-  changePassword(password: Object, username: string) {
-    this.apiService.put("employees/employee/" + username + "/password/", password).subscribe();
+  changePassword(password: Object, username: string): Observable<any>  {
+    return this.apiService.put("employees/employee/" + username + "/password/", password);
   }
 
   /*

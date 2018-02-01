@@ -33,7 +33,7 @@ export class ChangePasswordComponent implements OnInit {
     this.isSubmitting = true;
     if (this.passwordForm.valid) {
       console.log('form submitted');
-      this.employeeService.changePassword(this.passwordForm.value, this.currentEmployeeUsername);
+      this.employeeService.changePassword(this.passwordForm.value, this.currentEmployeeUsername).subscribe();
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.passwordForm);
