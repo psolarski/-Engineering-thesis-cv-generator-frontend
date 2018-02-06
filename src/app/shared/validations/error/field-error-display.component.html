@@ -1,9 +1,9 @@
 <div *ngIf="formControl.errors && !formControl.untouched" class="error-msg">
-  <div [hidden]="!formControl.errors.required">Filed can not be empty!</div>
-  <div [hidden]="!formControl.errors.minlength">Given value is too short!</div>
-  <div [hidden]="!formControl.errors.maxlength">Given value is too long!</div>
-  <div [hidden]="!formControl.errors.email">Invalid email pattern!</div>
-  <div [hidden]="!formControl.errors.notEquivalent">Passwords must match!</div>
-  <div [hidden]="!formControl.errors.max">Number must be smaller!</div>
-  <div [hidden]="!formControl.errors.min">Number must be bigger!</div>
+  <div [hidden]="!formControl.errors.required">{{'Errors.required' | translate}}</div>
+  <div [hidden]="!formControl.errors.minlength">{{'Errors.minlength' | translate}}</div>
+  <div [hidden]="!formControl.errors.maxlength">{{'Errors.maxlength' | translate}}</div>
+  <div [hidden]="!formControl.errors.email">{{'Errors.email' | translate}}</div>
+  <div [hidden]="!formControl.errors.notEquivalent">{{'Errors.notEquivalent' | translate}}</div>
+  <div [hidden]="!formControl.errors.max">{{'Errors.max' | translate}}</div>
+  <div [hidden]="!formControl.errors.min">{{'Errors.min' | translate}}</div>
 </div>

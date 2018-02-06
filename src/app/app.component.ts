@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './shared/services/employee.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OutlookService } from './shared/services/outlook.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,10 @@ export class AppComponent implements OnInit {
     private employeeService: EmployeeService,
     private outlookService: OutlookService,
     private router: Router,
-  ) {}
+    private translate: TranslateService
+  ) {
+    translate.setDefaultLang('pl');
+  }
 
   ngOnInit() {
     this.employeeService.populate();

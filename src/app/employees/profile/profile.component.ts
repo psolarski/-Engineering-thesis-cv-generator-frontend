@@ -27,24 +27,27 @@ export class ProfileComponent implements OnInit {
       .switchMap((params: ParamMap) => this.employeeService.getEmployee(params.get('username')))
       .subscribe(employee => {
           this.currentEmployee = employee.body;
-          this.buttonAccess = this.isAdminHROrOwner();
+          this.isAdminHROrOwner();
           if(this.currentEmployee.roles.filter(function(e) { return e.name === 'DEV'; }).length > 0) {
             this.currentDeveloper = employee.body;
           }
       });
   }
 
-  private isAdminHROrOwner(): boolean {
+  private isAdminHROrOwner() {
     let username = null;
+    this.buttonAccess = false;
     this.employeeService.currentEmployee.subscribe(data => {
       username = data.username;
     });
-
-    if (this.currentEmployee.roles.filter(function(e) { return e.name === 'ADMIN'; }).length > 0) {
-      return true;
-    } else if (this.currentEmployee.roles.filter(function(e) { return e.name === 'HR'; }).length > 0) {
-      return true;
-    } else return this.currentEmployee.username === username;
+   this.employeeService.currentEmployee.subscribe(data => {
+      if(data.roles.filter(function(e) { return e.name === 'ADMIN'; }).length > 0) {
+        this.buttonAccess = true;
+      } else if (data.roles.filter(function(e) { return e.name === 'HR'; }).length > 0) {
+        this.buttonAccess =  true;
+      } else if (this.currentEmployee.username === username) {
+       this.buttonAccess = true;
+      }
+    })
   }
-
 }

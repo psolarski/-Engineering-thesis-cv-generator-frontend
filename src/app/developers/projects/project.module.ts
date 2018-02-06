@@ -4,6 +4,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { ProjectComponent } from './project.component';
 import { DeveloperSharedModule } from '../shared/developer.shared.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const projectRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -16,7 +17,8 @@ const projectRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     projectRouting,
     SharedModule,
-    DeveloperSharedModule
+    DeveloperSharedModule,
+    SharedTranslate
   ],
   declarations: [
     ProjectComponent

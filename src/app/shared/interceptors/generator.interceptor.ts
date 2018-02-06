@@ -12,19 +12,19 @@ export class GeneratorInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // console.log(req);
-    return next.handle(req)
-      .catch(err => {
-      console.log("Something went wrong");
-      if (err instanceof HttpErrorResponse) {
-        if (err.status === 401) {
-          console.log(err.message);
-          return this.router.navigate(['/login']);
-        } else {
-          console.log(err.message);
-          //TODO
-          // return this.router.navigate(['/error']);
-        }
-      }
-    });
+    return next.handle(req);
+    //   .catch(err => {
+    //   console.log("Something went wrong");
+    //   if (err instanceof HttpErrorResponse) {
+    //     if (err.status === 401) {
+    //       console.log(err.message);
+    //       return this.router.navigate(['/login']);
+    //     } else {
+    //       console.log(err.message);
+    //       //TODO
+    //       // return this.router.navigate(['/error']);
+    //     }
+    //   }
+    // });
   }
 }

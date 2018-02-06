@@ -24,3 +24,19 @@
 hr {
   width: 90%;
 }
+
+.delete-button-wrapper {
+  margin-top: 2.3rem;
+}
+
+.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  top: 7px;
+}
+
+.error-msg {
+  color: #a94442;
+}

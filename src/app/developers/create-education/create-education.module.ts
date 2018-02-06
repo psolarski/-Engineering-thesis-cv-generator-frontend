@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { FieldErrorDisplayModule } from '../../shared/validations/error/field-error-display.module';
 import { DirectiveModule } from '../../shared/directives/directive.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const createEducationRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -18,7 +19,8 @@ const createEducationRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule,
     FieldErrorDisplayModule,
     DirectiveModule,
-    createEducationRouting
+    createEducationRouting,
+    SharedTranslate
   ],
   declarations: [
     CreateEducationComponent

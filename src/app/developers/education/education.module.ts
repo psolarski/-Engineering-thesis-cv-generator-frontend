@@ -4,6 +4,7 @@ import { EducationComponent } from './education.component';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
 import { DeveloperSharedModule } from '../shared/developer.shared.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const educationRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -17,7 +18,8 @@ const educationRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     SharedModule,
     educationRouting,
-    DeveloperSharedModule
+    DeveloperSharedModule,
+    SharedTranslate
   ],
   declarations: [
     EducationComponent

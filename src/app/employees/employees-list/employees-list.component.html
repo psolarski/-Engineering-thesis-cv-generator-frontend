@@ -5,30 +5,30 @@
       <div *ngIf="employees" class="card">
         <!--Card header-->
         <div class="card-header">
-          <h3>Employees list</h3>
+          <h3>{{'List.EmployeeList' | translate}}</h3>
         </div>
         <!--Card block-->
         <div class="card-block">
           <div class="float-left entries-select-wrapper">
             <!--Select menu-->
-            <p>Show
+            <p>{{'List.Show' | translate}}
             <select *ngIf="elementsCount" type="number" [(ngModel)]="elementsCount">
               <option value="5">5</option>
               <option value="10">10</option>
               <option value="15">15</option>
               <option value="25">25</option>
             </select>
-              elements.</p>
+              {{'List.Elements' | translate}}.</p>
           </div>
 
           <!--Create button and search-->
           <div *showAdmin class="float-right create-button-wrapper">
-            <button type="button" class="btn btn-primary" routerLink="/employees/create-employee/">Create</button>
+            <button type="button" class="btn btn-primary" routerLink="/employees/create-employee/">{{'Buttons.Create' | translate}}</button>
           </div>
           <div class="float-right search-input-wrapper">
             <p>
-              Search: <input size="25" type="text" id="searchInput"
-                             [(ngModel)]="queryString" placeholder="Filter username or last name...">
+              {{'List.Search' | translate}}: <input size="25" type="text" id="searchInput"
+                             [(ngModel)]="queryString" placeholder="{{'List.FilterUsernameOrLastName' | translate}}">
             </p>
           </div>
 
@@ -37,13 +37,13 @@
             <thead class="text-center">
               <tr>
                 <th><b>#</b></th>
-                <th><b>First Name</b></th>
-                <th><b>Last Name</b></th>
-                <th><b>Username</b></th>
-                <th><b>Address</b></th>
-                <th><b>Email</b></th>
-                <th *showAdmin><b>Edit</b></th>
-                <th><b>Profile</b></th>
+                <th><b>{{'List.FirstName' | translate}}</b></th>
+                <th><b>{{'List.LastName' | translate}}</b></th>
+                <th><b>{{'List.Username' | translate}}</b></th>
+                <th><b>{{'ProfilePage.Address' | translate}}</b></th>
+                <th><b>{{'ProfilePage.Email' | translate}}</b></th>
+                <th *showAdmin><b>{{'Buttons.Edit' | translate}}</b></th>
+                <th><b>{{'List.Profile' | translate}}</b></th>
               </tr>
             </thead>
             <tbody class="text-center">
@@ -58,7 +58,7 @@
                 <td>
                   <button type="button" class="btn btn-sm btn-outline-info"
                           routerLink="/profile/{{employee.username}}">
-                    Details
+                    {{'Buttons.Details' | translate}}
                   </button>
                 </td>
               </tr>
@@ -66,7 +66,7 @@
           </table>
         </div>
         <!--How many elements are shown-->
-        <p>Showing {{elementsCount}} of {{employees.length}}</p>
+        <p>{{'List.Showing' | translate}} {{elementsCount}} {{'List.Of' | translate}} {{employees.length}}</p>
       </div>
     </div>
   </div>

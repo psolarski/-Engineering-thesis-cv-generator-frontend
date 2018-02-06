@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../../services/employee.service';
 import { OutlookService } from '../../services/outlook.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: `layout-header`,
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    private outlookService: OutlookService
+    private outlookService: OutlookService,
+    public translate: TranslateService
   ) {}
 
 

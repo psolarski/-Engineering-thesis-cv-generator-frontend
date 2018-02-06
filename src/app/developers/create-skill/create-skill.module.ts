@@ -5,6 +5,8 @@ import { FieldErrorDisplayModule } from '../../shared/validations/error/field-er
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { CreateSkillComponent } from './create-skill.component';
+import { SharedTranslate } from '../../shared/shared-translate.module';
+
 
 const createSkillRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -21,7 +23,8 @@ const createSkillRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule,
     FieldErrorDisplayModule,
     DirectiveModule,
-    createSkillRouting
+    createSkillRouting,
+    SharedTranslate
   ],
   providers: [
     AuthGuard,

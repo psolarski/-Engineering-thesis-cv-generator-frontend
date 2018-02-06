@@ -29,4 +29,12 @@ export class SkillsListComponent implements OnInit {
         this.developers = developers.body.list;
       });
   }
+
+  countSkills(): number {
+    let returnCount = 0;
+    this.developers.forEach(dev => {
+      returnCount += dev.skills.length;
+    });
+    return returnCount;
+  }
 }

@@ -4,7 +4,7 @@
     <div class="col-md-10 top-wrapper">
       <div class="card">
         <div class="card-header">
-          <h3>Create new project</h3>
+          <h3>{{'ProfilePage.CreateNewProject' | translate}}</h3>
         </div>
         <div class="card-block">
           <form [formGroup]="projectForm" (ngSubmit)="submitForm()">
@@ -12,12 +12,12 @@
               <div class="row">
                 <!--Developer Project Company-->
                 <fieldset class="form-group col-md-6">
-                  <label for="company" class="col-md-8 col-form-label  required">Company</label>
+                  <label for="company" class="col-md-8 col-form-label  required">{{'List.Company' | translate}}</label>
                   <div class="col-md-10">
                     <input
                       id="company"
                       formControlName="company"
-                      placeholder="Company"
+                      placeholder="{{'List.Company' | translate}}"
                       class="form-control"
                       [(ngModel)]="newProject.company"
                       type="text"/>
@@ -31,12 +31,12 @@
 
                 <!--Developer Project Position-->
                 <fieldset class="form-group col-md-6">
-                  <label for="position" class="col-md-8 col-form-label  required">Position</label>
+                  <label for="position" class="col-md-8 col-form-label  required">{{'List.Position' | translate}}</label>
                   <div class="col-md-10">
                     <input
                       id="position"
                       formControlName="position"
-                      placeholder="Position"
+                      placeholder="{{'List.Position' | translate}}"
                       [(ngModel)]="newProject.position"
                       class="form-control"
                       type="text"/>
@@ -52,12 +52,12 @@
               <div class="row">
                 <!--Developer Project City-->
                 <fieldset class="form-group col-md-6">
-                  <label for="city" class="col-md-8 col-form-label  required">City</label>
+                  <label for="city" class="col-md-8 col-form-label  required">{{'List.City' | translate}}</label>
                   <div class="col-md-10">
                     <input
                       id="city"
                       formControlName="city"
-                      placeholder="City"
+                      placeholder="{{'List.City' | translate}}"
                       [(ngModel)]="newProject.city"
                       class="form-control"
                       type="text"/>
@@ -71,12 +71,12 @@
 
                 <!--Developer Project Description-->
                 <fieldset class="form-group col-md-6">
-                  <label for="description" class="col-md-8 col-form-label  required">Description</label>
+                  <label for="description" class="col-md-8 col-form-label  required">{{'List.Description' | translate}}</label>
                   <div class="col-md-10">
                     <input
                       id="description"
                       formControlName="description"
-                      placeholder="Description"
+                      placeholder="{{'List.Description' | translate}}"
                       [(ngModel)]="newProject.description"
                       class="form-control"
                       type="text"/>
@@ -92,12 +92,12 @@
               <div class="row">
                 <!--Project start date -->
                 <fieldset class="form-group col-md-6">
-                  <label for="startDate" class="col-md-8 col-form-label  required">Start Date</label>
+                  <label for="startDate" class="col-md-8 col-form-label  required">{{'List.StartDate' | translate}}</label>
                   <div class="col-md-8">
                     <input
                       id="startDate"
                       formControlName="startDate"
-                      placeholder="Start Date"
+                      placeholder="{{'List.StartDate' | translate}}"
                       [(ngModel)]="newProject.startDate"
                       class="form-control"
                       type="date"/>
@@ -111,12 +111,12 @@
 
                 <!--Project end date-->
                 <fieldset class="form-group col-md-6">
-                  <label for="endDate" class="col-md-8 col-form-label  required">End Date</label>
+                  <label for="endDate" class="col-md-8 col-form-label  required">{{'List.EndDate' | translate}}</label>
                   <div class="col-md-8">
                     <input
                       id="endDate"
                       formControlName="endDate"
-                      placeholder="End Date"
+                      placeholder="{{'List.EndDate' | translate}}"
                       [(ngModel)]="newProject.endDate"
                       class="form-control"
                       type="date"/>
@@ -132,13 +132,13 @@
               <!--Submit-->
               <div class="card-footer">
                 <button class="btn btn-info" type="button" (click)="goBackClicked()">
-                  Back
+                  {{'Buttons.Back' | translate}}
                 </button>
                 <button class="btn btn-success float-right" type="submit">
-                  Create
+                  {{'Buttons.Create' | translate}}
                 </button>
                 <button class="btn btn-warning float-right" type="button" (click)="clearForm()">
-                  Clear
+                  {{'Buttons.Clear' | translate}}
                 </button>
               </div>
             </fieldset>

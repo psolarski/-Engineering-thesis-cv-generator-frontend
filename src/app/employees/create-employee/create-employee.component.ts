@@ -45,7 +45,9 @@ export class CreateEmployeeComponent implements OnInit {
           this.newEmployee.type = "developer";
           this.newEmployee.creationDate = this.getCurrentDateAsString();
           this.assigneRole("DEV");
-          this.developerService.createDeveloper(this.newEmployee);
+          this.developerService.createDeveloper(this.newEmployee).subscribe(data => {
+            this.router.navigate(["/employees"]);
+          });
           break;
         }
         case 'ADMIN': {
@@ -53,7 +55,9 @@ export class CreateEmployeeComponent implements OnInit {
           this.newEmployee.type = "administrator";
           this.newEmployee.creationDate = this.getCurrentDateAsString();
           this.assigneRole("ADMIN");
-          this.employeeService.createEmployee(this.newEmployee);
+          this.employeeService.createEmployee(this.newEmployee).subscribe(data => {
+            this.router.navigate(["/employees"]);
+          });
           break;
         }
         case 'HR': {
@@ -61,12 +65,13 @@ export class CreateEmployeeComponent implements OnInit {
           this.newEmployee.type = "human-resource";
           this.newEmployee.creationDate = this.getCurrentDateAsString();
           this.assigneRole("HR");
-          this.employeeService.createEmployee(this.newEmployee);
+          this.employeeService.createEmployee(this.newEmployee).subscribe(data => {
+            this.router.navigate(["/employees"]);
+          });
           break;
         }
       }
       console.log(this.newEmployee);
-      this.router.navigate(["/employees"]);
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.employeeForm);

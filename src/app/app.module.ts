@@ -31,6 +31,8 @@ import { CreateSkillModule } from './developers/create-skill/create-skill.module
 import { OutlookModule } from './employees/outlook/outlook.module';
 import { ProjectModule } from './developers/projects/project.module';
 import { EditEmployeeModule } from './employees/edit-employee/edit-employee.module';
+import { SharedTranslate } from './shared/shared-translate.module';
+
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // {
@@ -40,10 +42,12 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   // }
 ], { useHash: false });
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
-    FooterComponent
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +72,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     CreateSkillModule,
     OutlookModule,
     ProjectModule,
-    EditEmployeeModule
+    EditEmployeeModule,
+    SharedTranslate
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,
@@ -86,4 +91,4 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

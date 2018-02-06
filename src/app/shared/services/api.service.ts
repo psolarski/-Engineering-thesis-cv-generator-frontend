@@ -86,4 +86,20 @@ export class ApiService {
 
     return this.httpClient.get(url, {headers: this.setHeaders().append("auth_token", outlookToken.toString()), observe: 'response'});
   }
+
+  postForOutlook(path: string, outlookToken: String, Message: any) {
+    let url = environment.api_url + path;
+
+    let body = {
+      Message
+    };
+    console.log("BODY MAIL FORM: " + JSON.stringify(body));
+    console.log(url);
+    return this.httpClient
+      .post(url,
+        JSON.stringify(body),
+        {headers: this.setHeaders()
+            .append("auth_token", outlookToken.toString())
+          ,observe: 'response'});
+  }
 }

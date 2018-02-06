@@ -4,7 +4,7 @@
     <div class="col-md-10 top-wrapper">
       <div class="card">
         <div class="card-header">
-          <h3>Create new skill</h3>
+          <h3>{{'ProfilePage.CreateNewSkill' | translate}}</h3>
         </div>
         <div class="card-block">
           <form [formGroup]="skillsForm" (ngSubmit)="submitForm()">
@@ -15,37 +15,37 @@
                     <div class="row">
 
                     <fieldset class="form-group col-md-4">
-                      <label for="name" class="col-md-8 col-form-label required">Skill Name</label>
+                      <label for="name" class="col-md-8 col-form-label required">{{'List.Skill' | translate}}</label>
                       <div class="col-md-12">
                         <input
                           id="name"
                           formControlName="name"
-                          placeholder="Skill Name"
+                          placeholder="{{'List.Skill' | translate}}"
                           class="form-control"
                           type="text"/>
                         <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.touched
                                     && skillsForm.controls['skills'].controls[i].controls.name.errors" class="error-msg">
-                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.errors.required">Filed can not be empty!</div>
-                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.errors.minlength">Given value is too short!</div>
-                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.errors.maxlength">Given value is too long!</div>
+                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.errors.required">{{'Errors.required' | translate}}</div>
+                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.errors.minlength">{{'Errors.minlength' | translate}}</div>
+                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.name.errors.maxlength">{{'Errors.maxlength' | translate}}</div>
                         </div>
                       </div>
                     </fieldset>
 
                     <fieldset class="form-group col-md-4">
-                      <label for="level" class="col-md-8 col-form-label required">Skill Level</label>
+                      <label for="level" class="col-md-8 col-form-label required">{{'List.Level' | translate}}</label>
                       <div class="col-md-12">
                       <input
                         id="level"
                         formControlName="level"
-                        placeholder="Skill Level"
+                        placeholder="{{'List.Level' | translate}}"
                         class="form-control"
                         type="text"/>
                         <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.touched
                              && skillsForm.controls['skills'].controls[i].controls.level.errors" class="error-msg">
-                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.errors.required">Filed can not be empty!</div>
-                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.errors.minlength">Given value is too short!</div>
-                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.errors.maxlength">Given value is too long!</div>
+                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.errors.required">{{'Errors.required' | translate}}</div>
+                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.errors.minlength">{{'Errors.minlength' | translate}}</div>
+                          <div *ngIf="skillsForm.controls['skills'].controls[i].controls.level.errors.maxlength">{{'Errors.maxlength' | translate}}</div>
                         </div>
                       </div>
                     </fieldset>
@@ -53,7 +53,7 @@
                       <button *ngIf="skillsForm.controls['skills'].controls.length > 1"
                               (click)="deleteRow(i)"
                               class="btn btn-danger">
-                          Delete
+                        {{'Buttons.Delete' | translate}}
                       </button>
                     </div>
                   </div>
@@ -61,18 +61,18 @@
                 </div>
 
               <div class="text-center">
-                <button type="button" (click)="addNewRow()" class="btn btn-primary">Add new Row</button><br>
+                <button type="button" (click)="addNewRow()" class="btn btn-primary">{{'Buttons.AddNewRow' | translate}}</button><br>
               </div>
               <!--Submit-->
               <div class="card-footer">
                 <button class="btn btn-info" type="button" (click)="goBackClicked()">
-                  Back
+                  {{'Buttons.Back' | translate}}
                 </button>
                 <button class="btn btn-success float-right" type="submit">
-                  Create
+                  {{'Buttons.Create' | translate}}
                 </button>
                 <button class="btn btn-warning float-right" type="button" (click)="clearForm()">
-                  Clear
+                  {{'Buttons.Clear' | translate}}
                 </button>
               </div>
             </fieldset>

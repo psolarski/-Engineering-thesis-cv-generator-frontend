@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" xmlns="http://www.w3.org/1999/html">
   <div class="row">
     <div class="col-xl-1"></div>
 
@@ -6,14 +6,13 @@
     <div class="col-sm-12 fonts">
       <div class="card mx-auto">
         <div class="card-header">
-
           <!--Navbars-->
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" href="#newMail" data-toggle="tab" role="tab">Send new</a>
+              <a class="nav-link active" href="#newMail" data-toggle="tab" role="tab">{{'Outlook.SendNew' | translate}}</a>
             </li>
-            <li *showDeveloper class="nav-item">
-              <a class="nav-link" href="#mails" data-toggle="tab" role="tab">Mailbox</a>
+            <li class="nav-item">
+              <a class="nav-link" href="#mails" data-toggle="tab" role="tab">{{'Outlook.Mailbox' | translate}} </a>
             </li>
           </ul>
         </div>
@@ -21,13 +20,103 @@
         <!-- Card block content -->
         <div class="tab-content">
          <!-- Tab panes -->
-         <div class="tab-pane" id="newMail" role="tabpanel">
+         <div class="tab-pane active" id="newMail" role="tabpanel">
+           <div *ngIf="send" class="alert alert-success box-msg" role="alert">
+             <strong>{{'Outlook.SendMail' | translate}}</strong>
+           </div>
+           <form [formGroup]="mailForm" (ngSubmit)="submitForm()">
+             <fieldset [disabled]="isSubmitting">
             <div class="card-block card-content">
-              {{outlookToken}}
-            </div>
-            <div class="card-footer  text-right">
-              <button type="button" class="btn btn btn-info">Send</button>
-            </div>
+                  <div class="row">
+
+                    <!--Subject -->
+                    <fieldset class="form-group col-md-6">
+                      <label for="subject" class="col-md-10 col-form-label required">{{'Outlook.Subject' | translate}}</label>
+                      <div class="col-md-10">
+                        <input
+                          id="subject"
+                          formControlName="Subject"
+                          placeholder="{{'Outlook.Subject' | translate}}"
+                          class="form-control"
+                          type="text"/>
+                        <field-error-display
+                          [displayError] = "isFieldValid('Subject')"
+                          [formControl]="mailForm.controls['Subject']"
+                          ngDefaultControl>
+                        </field-error-display>
+                      </div>
+                    </fieldset>
+                  </div>
+
+
+                  <!--Email body -->
+                  <div class="row" formGroupName="Body">
+
+                    <fieldset class="form-group col-md-12">
+                      <label for="content" class="col-md-8 col-form-label">{{'Outlook.Content' | translate}}</label>
+                      <div class="col-md-10">
+                        <textarea
+                          id="content"
+                          formControlName="{{'Outlook.Content' | translate}}"
+                          placeholder="Content"
+                          class="form-control"
+                          type="text"
+                          rows="3">
+                        </textarea>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <!--Recipients array -->
+                  <div formArrayName="ToRecipients">
+
+                    <div *ngFor="let recipient of mailForm.controls['ToRecipients'].controls; let i=index"  formGroupName="{{i}}">
+                      <div class="row" formGroupName="EmailAddress">
+
+                        <fieldset class="form-group col-md-6">
+                          <label for="email" class="col-md-10 col-form-label required">{{'Outlook.RecipientEmailAddress' | translate}}</label>
+                          <div class="col-md-10">
+                            <input
+                              id="email"
+                              formControlName="Address"
+                              placeholder="{{'ProfilePage.Email' | translate}}"
+                              class="form-control"
+                              type="text"/>
+                            <div *ngIf="mailForm.controls['ToRecipients'].controls[i].controls['EmailAddress'].controls.Address.touched
+                             && mailForm.controls['ToRecipients'].controls[i].controls['EmailAddress'].controls.Address.errors" class="error-msg">
+                              <div *ngIf="mailForm.controls['ToRecipients'].controls[i].controls['EmailAddress'].controls.Address.errors.required">{{'Errors.required' | translate}}</div>
+                              <div *ngIf="mailForm.controls['ToRecipients'].controls[i].controls['EmailAddress'].controls.Address.errors.minlength">{{'Errors.minlength' | translate}}</div>
+                              <div *ngIf="mailForm.controls['ToRecipients'].controls[i].controls['EmailAddress'].controls.Address.errors.maxlength">{{'Errors.maxlength' | translate}}</div>
+                              <div *ngIf="mailForm.controls['ToRecipients'].controls[i].controls['EmailAddress'].controls.Address.errors.email">{{'Errors.email' | translate}}</div>
+                            </div>
+                          </div>
+                        </fieldset>
+
+                        <div class="col-md-4 delete-button-wrapper text-center">
+                          <button *ngIf="mailForm.controls['ToRecipients'].controls.length > 1"
+                                  (click)="deleteRow(i)"
+                                  class="btn btn-danger">
+                            {{'Buttons.Delete' | translate}}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                <div class="text-center">
+                  <button type="button" (click)="addNewRow()" class="btn btn-primary">{{'Outlook.AddNewRecipient' | translate}}</button><br>
+                </div>
+
+              </div>
+             </fieldset>
+
+             <div class="card-footer text-right">
+               <button type="submit" class="btn btn-info float-right">{{'Outlook.Send' | translate}}</button>
+               <button type="button" class="btn btn-warning float-right" (click)="clearForm()">
+                 {{'Buttons.Clear' | translate}}
+               </button>
+             </div>
+           </form>
           </div>
 
           <div *ngIf="messages" role="tabpanel" class="tab-pane fade" id="mails">
@@ -41,7 +130,7 @@
                 <div class="bottom-border"></div>
               </div>
             </div>
-            <div class="card-footer  text-right">
+            <div class="card-footer text-right">
             </div>
           </div>
         </div>

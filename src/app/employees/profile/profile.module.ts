@@ -4,6 +4,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { DirectiveModule } from '../../shared/directives/directive.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const profileRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -17,7 +18,8 @@ const profileRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     SharedModule,
     profileRouting,
-    DirectiveModule
+    DirectiveModule,
+    SharedTranslate
   ],
   declarations:[
     ProfileComponent

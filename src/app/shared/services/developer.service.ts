@@ -20,8 +20,8 @@ export class DeveloperService {
     return this.apiService.get("developers/developer/" + username);
   }
 
-  createDeveloper(newDeveloper: Object) {
-    this.apiService.post('developers/developer/', newDeveloper).subscribe();
+  createDeveloper(newDeveloper: Object): Observable<any> {
+    return this.apiService.post('developers/developer/', newDeveloper);
   }
 
   addEducation(education: Education, username: string) {

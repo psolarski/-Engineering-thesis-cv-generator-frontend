@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from '../../shared/services/employee.service';
 import {Location} from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,7 +19,8 @@ export class ChangePasswordComponent implements OnInit {
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
     private location: Location,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {
     this.isSubmitting = false;
   }
@@ -33,7 +34,10 @@ export class ChangePasswordComponent implements OnInit {
     this.isSubmitting = true;
     if (this.passwordForm.valid) {
       console.log('form submitted');
-      this.employeeService.changePassword(this.passwordForm.value, this.currentEmployeeUsername).subscribe();
+      this.employeeService.changePassword(this.passwordForm.value, this.currentEmployeeUsername).subscribe(data => {
+        this.router.navigate(["/profile/" + this.currentEmployeeUsername]);
+
+      });
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.passwordForm);

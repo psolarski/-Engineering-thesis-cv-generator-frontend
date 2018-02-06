@@ -26,4 +26,12 @@ export class ProjectComponent implements OnInit {
         this.developers = developers.body.list;
       });
   }
+
+  countProjects(): number {
+    let returnProjectsCount = 0;
+    this.developers.forEach(dev => {
+      returnProjectsCount += dev.projects.length;
+    });
+    return returnProjectsCount;
+  }
 }

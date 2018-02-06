@@ -136,8 +136,8 @@ export class EmployeeService {
    * Create new Employee
    * @param {Employee} newEmployee body
    */
-  createEmployee(newEmployee: Employee) {
-    this.apiService.post("employees/employee/", newEmployee).subscribe();
+  createEmployee(newEmployee: Employee): Observable<any> {
+    return this.apiService.post("employees/employee/", newEmployee);
   }
 
   /**

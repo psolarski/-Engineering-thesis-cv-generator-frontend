@@ -10,16 +10,16 @@
           <!--Navbars-->
           <ul class="nav nav-tabs" role="tablist">
             <li class="nav-item">
-              <a class="nav-link active" href="#profile" data-toggle="tab" role="tab">{{currentEmployee.username}} Profile</a>
+              <a class="nav-link active" href="#profile" data-toggle="tab" role="tab">{{'Profile' | translate}} {{currentEmployee.username}}</a>
             </li>
-            <li *showDeveloper class="nav-item">
-              <a class="nav-link" href="#education" data-toggle="tab" role="tab">Education</a>
+            <li *ngIf="currentDeveloper" class="nav-item">
+              <a class="nav-link" href="#education" data-toggle="tab" role="tab">{{'Education' | translate}}</a>
             </li>
-            <li *showDeveloper class="nav-item">
-              <a class="nav-link" href="#projects" data-toggle="tab" role="tab">Projects</a>
+            <li *ngIf="currentDeveloper" class="nav-item">
+              <a class="nav-link" href="#projects" data-toggle="tab" role="tab">{{'Projects' | translate}}</a>
             </li>
-            <li class="nav-item">
-              <a *showDeveloper class="nav-link" href="#skills" data-toggle="tab" role="tab">Skills</a>
+            <li *ngIf="currentDeveloper" class="nav-item">
+              <a class="nav-link" href="#skills" data-toggle="tab" role="tab">{{'Skills' | translate}}</a>
             </li>
           </ul>
         </div>
@@ -39,51 +39,53 @@
               <div class="bottom-border"></div>
               <!--Username field-->
               <div class="row">
-                <div class="card-text col-sm-5"> Username:</div>
+                <div class="card-text col-sm-5"> {{'ProfilePage.Username' | translate}}:</div>
                 <div class="col-sm-5">{{currentEmployee.username}}</div>
                 <div class="bottom-border"></div>
               </div>
               <!--Email field-->
               <div class="row">
-                <div class="card-text col-sm-5"> Email:</div>
+                <div class="card-text col-sm-5"> {{'ProfilePage.Email' | translate}}:</div>
                 <div class="col-sm-5">{{currentEmployee.email}}</div>
                 <div class="bottom-border"></div>
               </div>
               <!--Phone field-->
               <div class="row">
-                <div class="card-text col-sm-5"> Phone:</div>
+                <div class="card-text col-sm-5"> {{'ProfilePage.Phone' | translate}}:</div>
                 <div class="col-sm-5">{{currentEmployee.phone}}</div>
                 <div class="bottom-border"></div>
               </div>
               <!--Join date field-->
               <div class="row">
-                <div class="card-text col-sm-5"> Date of Joining:</div>
+                <div class="card-text col-sm-5"> {{'ProfilePage.DateOfJoin' | translate}}:</div>
                 <div class="col-sm-5">{{currentEmployee.creationDate | date: 'dd-MM-yyyy'}}</div>
                 <div class="bottom-border"></div>
               </div>
               <!--City filed-->
               <div class="row">
-                <div class="card-text col-sm-5">City:</div>
+                <div class="card-text col-sm-5">{{'ProfilePage.City' | translate}}:</div>
                 <div class="col-sm-5">{{currentEmployee.address.city}}</div>
                 <div class="bottom-border"></div>
               </div>
               <!--Street fields-->
               <div class="row">
-                <div class="card-text col-sm-5">Street:</div>
+                <div class="card-text col-sm-5">{{'ProfilePage.Street' | translate}}:</div>
                 <div class="col-sm-5">{{currentEmployee.address.street}} {{currentEmployee.address.number}}</div>
                 <div class="bottom-border"></div>
               </div>
             </div>
 
             <div class="card-footer text-right">
-              <button type="button" class="btn btn btn-warning" routerLink="/profile/{{currentEmployee.username}}/edit">Edit</button>
+              <button *ngIf="buttonAccess" type="button" class="btn btn btn-warning" routerLink="/profile/{{currentEmployee.username}}/edit">
+                {{'Buttons.Edit' | translate}}
+              </button>
               <button type="button" *ngIf="buttonAccess"
                       routerLink="/profile/{{currentEmployee.username}}/password" class="btn btn btn-warning">
-                Change Password
+                {{'Buttons.ChangePassword' | translate}}
               </button>
               <button type="button" *ngIf="buttonAccess"
                       class="btn btn btn-info" routerLink="/profile/{{currentEmployee.username}}/cv-generation">
-                Generate CV
+                {{'Buttons.GenerateCV' | translate}}
               </button>
             </div>
           </div>
@@ -107,7 +109,7 @@
             <div class="card-footer  text-right">
               <button type="button" *ngIf="buttonAccess"
                       class="btn btn btn-success" routerLink="/profile/{{currentDeveloper.username}}/create-education/">
-                Add Education
+                {{'Buttons.AddEducation' | translate}}
               </button>
             </div>
           </div>
@@ -131,7 +133,7 @@
             <div class="card-footer  text-right">
               <button type="button" *ngIf="buttonAccess"
                       class="btn btn btn-success" routerLink="/profile/{{currentDeveloper.username}}/create-project/">
-                Add Project
+                {{'Buttons.AddProject' | translate}}
               </button>
             </div>
           </div>
@@ -157,7 +159,7 @@
               <div class="card-footer  text-right">
                 <button type="button" *ngIf="buttonAccess"
                         class="btn btn btn-success" routerLink="/profile/{{currentDeveloper.username}}/create-skill/">
-                  Add Skill
+                  {{'Buttons.AddSkill' | translate}}
                 </button>
               </div>
           </div>

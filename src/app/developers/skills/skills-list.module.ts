@@ -4,6 +4,7 @@ import { SkillsListComponent } from './skills-list.component';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
 import { DeveloperSharedModule } from '../shared/developer.shared.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const skillsListRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -16,7 +17,8 @@ const skillsListRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     skillsListRouting,
     SharedModule,
-    DeveloperSharedModule
+    DeveloperSharedModule,
+    SharedTranslate
   ],
   declarations: [
     SkillsListComponent

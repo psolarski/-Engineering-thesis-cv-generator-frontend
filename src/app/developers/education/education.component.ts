@@ -29,4 +29,12 @@ export class EducationComponent implements OnInit {
         this.developers = developers.body.list;
       });
   }
+
+  countEducations(): number {
+    let returnLenght = 0;
+    this.developers.forEach(dev => {
+      returnLenght += dev.educations.length;
+    });
+    return returnLenght;
+  }
 }

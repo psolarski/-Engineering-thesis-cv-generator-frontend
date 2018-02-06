@@ -5,6 +5,7 @@ import { EmployeesListComponent } from './employees-list.component';
 import { SharedModule } from '../../shared/shared.module';
 import { EmployeesFilterPipe } from './employees-filter.pipe';
 import { DirectiveModule } from '../../shared/directives/directive.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const employeeListRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -17,7 +18,8 @@ const employeeListRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     SharedModule,
     employeeListRouting,
-    DirectiveModule
+    DirectiveModule,
+    SharedTranslate
   ],
   declarations: [
     EmployeesListComponent,

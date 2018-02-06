@@ -4,23 +4,23 @@
     <div class="col-md-12 top-wrapper">
       <div class="card">
         <div class="card-header">
-          <h3>Create new employee</h3>
+          <h3>{{'ProfilePage.ChangeYourData' | translate}}</h3>
         </div>
         <div class="card-block">
           <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
             <fieldset [disabled]="isSubmitting">
               <div class="text-sm-left header-wrapper">
-                <h5>Employee data</h5>
+                <h5>{{'ProfilePage.EmployeeData' | translate}}</h5>
               </div>
               <div class="row">
                 <!--Employee name-->
                 <fieldset class="form-group col-md-5">
-                  <label for="name" class="col-md-8 col-form-label  required">Name</label>
+                  <label for="name" class="col-md-8 col-form-label  required">{{'ProfilePage.Name' | translate}}</label>
                   <div class="col-md-8">
                     <input
                       id="name"
                       formControlName="name"
-                      placeholder="Name"
+                      placeholder="{{'ProfilePage.Name' | translate}}"
                       class="form-control"
                       [(ngModel)]="currentEmployee.name"
                       type="text"/>
@@ -34,12 +34,12 @@
 
                 <!--Employee surname-->
                 <fieldset class="form-group col-md-5">
-                  <label for="surname" class="col-md-8 col-form-label  required">Surname</label>
+                  <label for="surname" class="col-md-8 col-form-label  required">{{'ProfilePage.Surname' | translate}}</label>
                   <div class="col-md-8">
                     <input
                       id="surname"
                       formControlName="surname"
-                      placeholder="Surname"
+                      placeholder="{{'ProfilePage.Surname' | translate}}"
                       [(ngModel)]="currentEmployee.surname"
                       class="form-control"
                       type="text"/>
@@ -55,12 +55,12 @@
               <div class="row">
                 <!--Employee email-->
                 <fieldset class="form-group col-md-5">
-                  <label for="email" class="col-md-8 col-form-label  required">Email</label>
+                  <label for="email" class="col-md-8 col-form-label  required">{{'ProfilePage.Email' | translate}}</label>
                   <div class="col-md-8">
                     <input
                       id="email"
                       formControlName="email"
-                      placeholder="Email"
+                      placeholder="{{'ProfilePage.Email' | translate}}"
                       [(ngModel)]="currentEmployee.email"
                       class="form-control"
                       type="text"/>
@@ -73,12 +73,12 @@
                 </fieldset>
 
                 <fieldset class="form-group col-md-5">
-                  <label for="phone" class="col-md-8 col-form-label  required">Phone</label>
+                  <label for="phone" class="col-md-8 col-form-label  required">{{'ProfilePage.Phone' | translate}}</label>
                   <div class="col-md-8">
                     <input
                       id="phone"
                       formControlName="phone"
-                      placeholder="Phone"
+                      placeholder="{{'ProfilePage.Phone' | translate}}"
                       [(ngModel)]="currentEmployee.phone"
                       class="form-control"
                       type="tel"/>
@@ -150,18 +150,18 @@
               <div formGroupName="address">
                 <!--Header-->
                 <div class="text-sm-left header-wrapper">
-                  <h5>Address</h5>
+                  <h5>{{'ProfilePage.Address' | translate}}</h5>
                 </div>
                 <!--Content-->
                 <div class="row">
                   <!--City-->
                   <fieldset class="form-group col-sm-4">
-                    <label for="city" class="col-md-8 col-form-label  required">City</label>
+                    <label for="city" class="col-md-8 col-form-label  required">{{'ProfilePage.City' | translate}}</label>
                     <div class="col-md-8">
                       <input
                         id="city"
                         formControlName="city"
-                        placeholder="City"
+                        placeholder="{{'ProfilePage.City' | translate}}"
                         class="form-control"
                         [(ngModel)]="currentEmployee.address.city"
                         type="text"/>
@@ -176,12 +176,12 @@
 
                   <!--Street-->
                   <fieldset class="form-group col-sm-4">
-                    <label for="street" class="col-md-5 col-form-label  required">Street</label>
+                    <label for="street" class="col-md-5 col-form-label  required">{{'ProfilePage.Street' | translate}}</label>
                     <div class="col-md-8">
                       <input
                         id="street"
                         formControlName="street"
-                        placeholder="Street"
+                        placeholder="{{'ProfilePage.Street' | translate}}"
                         [(ngModel)]="currentEmployee.address.street"
                         class="form-control"
                         type="text"/>
@@ -196,12 +196,12 @@
 
                   <!--Number-->
                   <fieldset class="form-group col-sm-4">
-                    <label for="number" class="col-md-5 col-form-label  required">Number</label>
+                    <label for="number" class="col-md-5 col-form-label  required">{{'ProfilePage.Number' | translate}}</label>
                     <div class="col-md-5">
                       <input
                         id="number"
                         formControlName="number"
-                        placeholder="Number"
+                        placeholder="{{'ProfilePage.Number' | translate}}"
                         class="form-control"
                         [(ngModel)]="currentEmployee.address.number"
                         type="number"/>
@@ -218,14 +218,14 @@
               </div>
               <!--Submit-->
               <div class="card-footer">
-                <button class="btn btn-md btn-info btn-lg" type="button" (click)="goBackClicked()">
-                  Back
+                <button class="btn btn-info" type="button" (click)="goBackClicked()">
+                  {{'Buttons.Back' | translate}}
                 </button>
-                <button class="btn btn-md btn-success btn-lg float-right" type="submit">
-                  Update
+                <button class="btn btn-success float-right" type="submit">
+                  {{'Buttons.Update' | translate}}
                 </button>
-                <button class="btn btn-md btn-warning btn-lg float-right" type="button" (click)="clearForm()">
-                  Clear
+                <button class="btn btn-warning float-right" type="button" (click)="clearForm()">
+                  {{'Buttons.Clear' | translate}}
                 </button>
               </div>
             </fieldset>

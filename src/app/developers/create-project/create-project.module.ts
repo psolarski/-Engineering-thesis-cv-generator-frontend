@@ -5,6 +5,7 @@ import { CreateProjectComponent } from './create-project.component';
 import { DirectiveModule } from '../../shared/directives/directive.module';
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const createProjectRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -21,7 +22,8 @@ const createProjectRouting: ModuleWithProviders = RouterModule.forChild([
     SharedModule,
     FieldErrorDisplayModule,
     DirectiveModule,
-    createProjectRouting
+    createProjectRouting,
+    SharedTranslate
   ],
   providers: [
     AuthGuard,

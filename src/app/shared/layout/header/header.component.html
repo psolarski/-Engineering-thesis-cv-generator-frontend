@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand navbar-first-element"  routerLink="/profile/{{currentEmployeeUsername}}"><strong>Home</strong></a>
+  <a class="navbar-brand navbar-first-element"  routerLink="/profile/{{currentEmployeeUsername}}"><strong>{{'Home' | translate}}</strong></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,16 +7,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="/projects/">Projects</a>
+        <a class="nav-link" routerLink="/projects/">{{'Projects' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/education/">Education</a>
+        <a class="nav-link" routerLink="/education/">{{'Education' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/skills/">Skills</a>
+        <a class="nav-link" routerLink="/skills/">{{'Skills' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/employees/">Employees</a>
+        <a class="nav-link" routerLink="/employees/">{{'Employees' | translate}}</a>
       </li>
       <li class="nav-item">
         <a *ngIf="!isOutlookTokenAvailable" class="nav-link" href="{{outlookAuthorizationURL}}">Outlook Login</a>
@@ -28,13 +28,13 @@
 
     <div class="nav-item dropdown navbar-last-element" aria-labelledby="dropdownMenuLink">
       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Hello {{currentEmployeeUsername}}
+        {{'Hello' | translate }} {{currentEmployeeUsername}}
       </a>
       <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-        <a class="dropdown-item" routerLink="/profile/{{currentEmployeeUsername}}">Profile</a>
+        <a class="dropdown-item" routerLink="/profile/{{currentEmployeeUsername}}">{{'Profile' | translate}}</a>
         <!--<a class="dropdown-item" href="#">Settings</a>-->
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()">Logout</a>
+        <a class="dropdown-item" (click)="logout()">{{ 'Logout' | translate}}</a>
       </div>
     </div>
   </div>
