@@ -16,8 +16,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    private outlookService: OutlookService,
-    public translate: TranslateService
+    private outlookService: OutlookService
   ) {}
 
 

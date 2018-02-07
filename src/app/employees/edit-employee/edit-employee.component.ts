@@ -74,9 +74,15 @@ export class EditEmployeeComponent implements OnInit {
           break;
         }
       }
-      this.employeeService.updateEmployee(this.username, this.currentEmployee).subscribe();
+      this.employeeService.updateEmployee(this.username, this.currentEmployee)
+        .subscribe(data => {
+          console.log("data " + data.body);
+          this.router.navigate([ "/profile/" + this.username ]);
+        }, error => {
+          console.log("error " + error);
+        }
+      );
       console.log(this.currentEmployee);
-      this.router.navigate([ "/profile/" + this.username ]);
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.employeeForm);

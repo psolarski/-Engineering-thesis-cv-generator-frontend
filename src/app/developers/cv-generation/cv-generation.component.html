@@ -4,22 +4,22 @@
     <div class="col-md-10 top-wrapper">
       <div class="card" *ngIf="developerUsername">
         <div class="card-header">
-          <h3>{{developerUsername}} generated CV</h3>
+          <h3>{{'Outlook.GeneratedCV' | translate}} {{developerUsername}}</h3>
         </div>
         <div class="card-block">
-          <div class="col-md-10 text-center">
+          <div ng-if="pdfFileUrl" class="col-md-10 text-center">
             <iframe class="pdf-display" [src]="pdfFileUrl" width="100%" height="500rem" allowfullscreen></iframe>
           </div>
         </div>
         <div class="card-footer">
           <button class="btn btn-info" type="button" (click)="goBackClicked()">
-            Back
+            {{'Buttons.Back' | translate}}
           </button>
           <button class="btn btn-primary float-right" type="button" (click)="saveGeneratedCv()">
-            Download
+            {{'Outlook.Download' | translate}}
           </button>
           <button class="btn btn-success float-right" type="button">
-            Add as Attachment
+            {{'Outlook.AddAsAttachment' | translate}}
           </button>
         </div>
       </div>

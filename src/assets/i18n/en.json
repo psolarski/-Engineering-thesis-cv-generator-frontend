@@ -75,7 +75,10 @@
     "SendNew": "Send New",
     "Mailbox": "Mailbox",
     "SendMail": "Your email has been sent",
-    "Send": "Send"
+    "Send": "Send",
+    "GeneratedCV": "Generated CV",
+    "Download": "Download",
+    "AddAsAttachment": "Add as Attachment"
   },
   "ProfilePage": {
     "Username": "Username",
@@ -98,5 +101,11 @@
     "CreateNewProject": "Create new project",
     "CreateNewEducation": "Create new education",
     "CreateNewSkill": "Create new skill"
+  },
+  "Error": {
+    "Error403": "Błąd 403 Dostęp Zabroniony!",
+    "Error404": "Błąd 404 Not Found",
+    "Error403Message": "You do not have permission to view the content!",
+    "Error404Message": "The requested resource was not found!"
   }
 }

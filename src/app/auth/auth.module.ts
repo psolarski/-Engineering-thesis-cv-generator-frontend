@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AuthComponent } from './auth.component';
 import { SharedModule } from '../shared/shared.module';
 import { NoAuthGuard } from '../shared/guards/no-auth-guard.service';
+import { SharedTranslate } from '../shared/shared-translate.module';
 
 const authRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -16,7 +17,8 @@ const authRouting: ModuleWithProviders = RouterModule.forChild([
 @NgModule({
   imports: [
     SharedModule,
-    authRouting
+    authRouting,
+    SharedTranslate
   ],
   declarations: [
     AuthComponent

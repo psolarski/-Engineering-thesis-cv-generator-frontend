@@ -113,7 +113,7 @@ export class CreateEmployeeComponent implements OnInit {
       'phone': [ '',
         [ Validators.required,
           Validators.minLength(7),
-          Validators.maxLength(9)]
+          Validators.maxLength(9),]
       ],
       address: this.formBuilder.group({
         city: [ '',

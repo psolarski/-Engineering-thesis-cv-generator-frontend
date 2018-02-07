@@ -33,7 +33,6 @@ export class CvGenerationComponent implements OnInit {
         console.log("DATA LOG " + response.blob());
         let file = new Blob([ response.blob() ], { type: 'application/pdf' });
         let url = URL.createObjectURL(file);
-
         this.pdfFile = file;
         this.pdfFileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     });

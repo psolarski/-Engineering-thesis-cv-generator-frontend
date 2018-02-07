@@ -75,7 +75,10 @@
     "SendNew": "Utwórz nową",
     "Mailbox": "Skrzynka odbiorcza",
     "SendMail": "Wysłano wiadomość email",
-    "Send": "Wyślij"
+    "Send": "Wyślij",
+    "GeneratedCV": "Wygenerowane CV pracownika",
+    "Download": "Pobież",
+    "AddAsAttachment": "Dodaj jako załącznik"
   },
   "ProfilePage": {
     "Username": "Nazwa użytkownika",
@@ -98,5 +101,11 @@
     "CreateNewProject": "Utwórz nowy projekt",
     "CreateNewEducation": "Utwórz nowe wykształcenie",
     "CreateNewSkill": "Utwórz nową umiejętność"
+  },
+  "Error": {
+    "Error403": "Błąd 403 Dostęp Zabroniony!",
+    "Error404": "Błąd 404 Nie Znaleziono!",
+    "Error403Message": "Nie posiadasz uprawnień do wyświetlenia zawartości!",
+    "Error404Message": "Nie znaleziono żądanego zasobu!"
   }
 }

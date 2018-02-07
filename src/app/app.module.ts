@@ -32,6 +32,7 @@ import { OutlookModule } from './employees/outlook/outlook.module';
 import { ProjectModule } from './developers/projects/project.module';
 import { EditEmployeeModule } from './employees/edit-employee/edit-employee.module';
 import { SharedTranslate } from './shared/shared-translate.module';
+import { ErrorModule } from './shared/error-pages/error.module';
 
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
@@ -46,8 +47,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FooterComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +73,8 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([
     OutlookModule,
     ProjectModule,
     EditEmployeeModule,
-    SharedTranslate
+    SharedTranslate,
+    ErrorModule
   ],
   providers: [{
       provide: HTTP_INTERCEPTORS,

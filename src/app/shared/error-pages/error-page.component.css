@@ -1,0 +1,27 @@
+.top-wrapper {
+  margin-top: 3rem;
+  margin-left: 5rem;
+}
+
+.bottom-border {
+  margin: 1rem 0 1rem;
+  border-bottom: 1px solid #aaa;
+  width: 80%;
+}
+
+hr {
+  width: 90%;
+}
+
+.header-wrapper {
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.card-block {
+  min-height: 10rem;
+}
+
+h5 {
+  margin-top: 4rem;
+}

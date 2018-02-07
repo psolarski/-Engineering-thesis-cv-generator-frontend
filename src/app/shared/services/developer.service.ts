@@ -29,7 +29,6 @@ export class DeveloperService {
   }
 
   generatePdf(username: string): Observable<any> {
-    // this.apiService.receivePdf('developers/developer/' + username + '/cv')
     return this.apiService.getDeveloperPdf('developers/developer/' + username + '/cv')
   }
 

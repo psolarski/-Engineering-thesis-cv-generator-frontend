@@ -4,6 +4,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { CvGenerationComponent } from './cv-generation.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 
 const cvGenerationRouting: ModuleWithProviders = RouterModule.forChild([
@@ -17,7 +18,8 @@ const cvGenerationRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     cvGenerationRouting,
     SharedModule,
-    PdfViewerModule
+    PdfViewerModule,
+    SharedTranslate
   ],
   declarations: [
     CvGenerationComponent

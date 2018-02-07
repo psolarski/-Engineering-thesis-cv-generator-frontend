@@ -1,9 +1,10 @@
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: #424558;
-  color: #CCC;
+  /*position: fixed;*/
+  /*bottom: 0;*/
+  width: 85%;
+  background-color: #343a40;
+  left: 2rem;
+  /*color: #CCC;*/
 }
 
 footer > p {
