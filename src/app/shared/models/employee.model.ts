@@ -11,6 +11,9 @@ export class Employee implements IEmployee{
   phone: number;
   type: string;
   creationDate: string;
+  active: boolean;
+  locked: boolean;
+  version: number;
   address: Address = new Address;
 
   roles: Role[] = [];

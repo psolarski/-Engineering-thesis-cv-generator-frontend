@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import 'rxjs/add/observable/throw';
 
 @Injectable()
 export class GeneratorInterceptor implements HttpInterceptor {
@@ -13,9 +14,8 @@ export class GeneratorInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
       .catch(err => {
-      console.log("Something went wrong");
       if (err instanceof HttpErrorResponse) {
-        if (err.status === 401) {
+        if (err.status === 401 && this.router.url !== '/login') {
           console.log("Unauthorized: " + err.message);
           return this.router.navigate(['/login']);
         } if (err.status === 403) {
@@ -26,7 +26,7 @@ export class GeneratorInterceptor implements HttpInterceptor {
           return this.router.navigate(['/error/404']);
         }
       }
-      return Observable.throw(Error);
-    });
+      return Observable.throw(Error(err.error));
+    }) as any;
   }
 }

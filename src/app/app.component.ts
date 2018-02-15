@@ -40,7 +40,6 @@ export class AppComponent implements OnInit {
     this.activatedRoute.fragment.subscribe((fragment: String) => {
       if(fragment) {
         let outlookToken =  fragment.substr(0, fragment.indexOf('&')).substr(13, fragment.length);
-        // console.log("Token: " + outlookToken);
         this.outlookService.saveToken(outlookToken);
         this.router.navigate(['/outlook']);
       }

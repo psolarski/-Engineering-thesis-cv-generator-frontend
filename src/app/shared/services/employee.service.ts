@@ -12,6 +12,7 @@ import { JwtService } from './jwt.service';
 import { Observable } from 'rxjs/Observable';
 import { OutlookService } from './outlook.service';
 import { EditEmployeeDto } from '../models/dto/edit-employee.dto';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -26,7 +27,8 @@ export class EmployeeService {
   constructor (
     private apiService: ApiService,
     private jwtService: JwtService,
-    private outlookService: OutlookService
+    private outlookService: OutlookService,
+    private router: Router
   ) {}
 
   /**
@@ -34,35 +36,19 @@ export class EmployeeService {
    * If present fetch employee body from backend.
    */
   populate() {
-    console.log(`Populating tokens`);
-    if (this.jwtService.getToken()) {
-      const response = this.apiService.get(`employees/employee`);
-      response.subscribe(
-        data => {
-          // this.jwtService.saveToken(data.headers.get(`Authorization`));
-          // this.fetchEmployeeData();
-        },
-        err => this.purgeAuth()
-        )
+    console.log(`Populating tokens ` + typeof this.jwtService.getToken() + " " + this.jwtService.getToken());
+    if (this.jwtService.getToken() !== 'null' && this.jwtService.getToken() !== 'undefined'
+      && this.jwtService.getToken() !== undefined && this.jwtService.getToken() !== null) {
+      this.apiService.get('employees/employee').subscribe(data => {
+        this.currentEmployeeSubject.next(data.body);
+        this.isAuthenticatedSubject.next(true);
+      }, error => {
+          this.purgeAuth();
+      });
     } else {
       this.purgeAuth();
+      this.router.navigate(['/login']);
     }
-    this.purgeAuth();
-    this.mockLogin();
-  }
-
-  mockLogin() {
-    let credentials = {
-      username: "dev1",
-      password: "password",
-      type: "developer"
-    };
-    this.apiService.login(credentials).subscribe(
-      data => {
-        this.isAuthenticatedSubject.next(true);
-        this.jwtService.saveToken(data.headers.get(`Authorization`));
-        this.fetchEmployeeData();
-      }, error => error);
   }
 
   /**
@@ -75,9 +61,8 @@ export class EmployeeService {
     const response = this.apiService.login(credentials);
       response.subscribe(
       data => {
-        this.isAuthenticatedSubject.next(true);
         this.jwtService.saveToken(data.headers.get(`Authorization`));
-            this.fetchEmployeeData();
+        this.fetchEmployeeData();
         }, error => error);
       return response;
   }
@@ -86,12 +71,15 @@ export class EmployeeService {
    * Fetch user body from backend
    */
   private fetchEmployeeData() {
-    this.apiService.get(`employees/employee`)
+    this.apiService.get('employees/employee')
       .subscribe(
         response => {
           this.currentEmployeeSubject.next(response.body);
+          this.isAuthenticatedSubject.next(true);
       },
-      error => error)
+      error => {
+          console.log("Error fetching data!" + error.message);
+      })
   }
 
   /**
@@ -100,24 +88,16 @@ export class EmployeeService {
    * and false to Subject isAuthenicated.
    */
   purgeAuth() {
+    console.log("AUTH PURGE!");
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
     // Remove Outlook token
     this.outlookService.destroyToken();
-    // Set current employee to an empty object
-    this.currentEmployeeSubject.next(new Employee());
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
+    // Set current employee to an empty object
+    this.currentEmployeeSubject.next(new Employee());
   }
-
-  /**
-   * Get current logged in Employee
-   * @returns {Employee} logged Employee
-   */
-  getCurrentEmployee(): Employee {
-    return this.currentEmployeeSubject.value;
-  }
-
 
   /**
    * Get whole employee list
@@ -143,14 +123,22 @@ export class EmployeeService {
   /**
    * Update Employees Password
    */
-  changePassword(password: Object, username: string): Observable<any>  {
-    return this.apiService.put("employees/employee/" + username + "/password/", password);
+  changePassword(password: Object, username: string, employee: Employee): Observable<any>  {
+    return this.apiService.putEmployeeChangePassword("employees/employee/" + username + "/password/", employee, password);
   }
 
   /*
    * Update Employee
    */
   updateEmployee(path: string, employee: EditEmployeeDto): Observable<any> {
-    return this.apiService.put("/employees/employee/" + path, employee);
+    return this.apiService.putEmployee("/employees/employee/" + path, employee);
+  }
+
+  lockedAccount(path: string, employee: Employee): Observable<any> {
+    return this.apiService.putEmployee("employees/employee/" + path, employee);
+  }
+
+  activateAccount(path: string, employee: Employee): Observable<any> {
+    return this.apiService.putEmployee("employees/employee/" + path, employee);
   }
 }

@@ -22,7 +22,10 @@
     "Delete": "Usuń",
     "AddNewRow": "Dodaj nowy",
     "Create": "Utwórz",
-    "SignIn": "Zaloguj"
+    "SignIn": "Zaloguj",
+    "Activate": "Aktywuj konto",
+    "Unlock": "Odblokuj konto",
+    "Lock": "Zablokuj konto"
   },
   "List" : {
     "Show": "Pokaż",
@@ -53,7 +56,11 @@
     "SkillList": "Lista Umiejętności",
     "Name": "Nazwa",
     "Level": "Poziom",
-    "EmployeeList": "Lista Pracowników"
+    "EmployeeList": "Lista Pracowników",
+    "Active": "Aktywne",
+    "InActive": "Nieaktywne",
+    "Locked": "Zablokowane",
+    "Unlocked": "Odblokowane"
   },
   "Errors": {
     "required": "Pole nie może być puste!",
@@ -65,7 +72,9 @@
     "min": "Podana liczba jest zbyt mała!"
   },
   "Exceptions": {
-
+    "UsernameOrPassword": "Niepoprawny login lub hasło!",
+    "optimistic_lock": "Pracujesz na nieaktualnej wersji!",
+    "runtime_exception": "Błąd serwera. Spróbuj ponownie później."
   },
   "Outlook": {
     "Subject": "Temat",
@@ -78,7 +87,8 @@
     "Send": "Wyślij",
     "GeneratedCV": "Wygenerowane CV pracownika",
     "Download": "Pobież",
-    "AddAsAttachment": "Dodaj jako załącznik"
+    "AddAsAttachment": "Dodaj jako załącznik",
+    "FileName": "Załącznik"
   },
   "ProfilePage": {
     "Username": "Nazwa użytkownika",
@@ -100,7 +110,8 @@
     "Address": "Adres",
     "CreateNewProject": "Utwórz nowy projekt",
     "CreateNewEducation": "Utwórz nowe wykształcenie",
-    "CreateNewSkill": "Utwórz nową umiejętność"
+    "CreateNewSkill": "Utwórz nową umiejętność",
+    "CreateNewEmployee": "Utwórz nowego pracownika"
   },
   "Error": {
     "Error403": "Błąd 403 Dostęp Zabroniony!",

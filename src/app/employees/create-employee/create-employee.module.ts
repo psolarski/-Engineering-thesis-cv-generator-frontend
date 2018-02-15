@@ -4,6 +4,7 @@ import { CreateEmployeeComponent } from './create-employee.component';
 import { AuthGuard } from '../../shared/guards/auth-guard.service';
 import { SharedModule } from '../../shared/shared.module';
 import { FieldErrorDisplayModule } from '../../shared/validations/error/field-error-display.module';
+import { SharedTranslate } from '../../shared/shared-translate.module';
 
 const createEmployeeRouting: ModuleWithProviders = RouterModule.forChild([
   {
@@ -16,7 +17,8 @@ const createEmployeeRouting: ModuleWithProviders = RouterModule.forChild([
   imports: [
     createEmployeeRouting,
     SharedModule,
-    FieldErrorDisplayModule
+    FieldErrorDisplayModule,
+    SharedTranslate
   ],
   declarations: [
     CreateEmployeeComponent

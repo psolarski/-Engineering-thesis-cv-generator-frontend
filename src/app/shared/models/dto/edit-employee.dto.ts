@@ -7,6 +7,7 @@ export class EditEmployeeDto {
   email: string;
   phone: number;
   type: string;
+  version: number;
   address: Address = new Address;
 
   roles: Role[] = [];

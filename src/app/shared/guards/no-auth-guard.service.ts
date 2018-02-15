@@ -14,7 +14,6 @@ export class NoAuthGuard implements CanActivate {
 
   canActivate(): Observable<boolean> {
 
-    console.log(`NoAuthGuard: ` + this.employeeService.isAuthenticated.take(1).map(bool => !bool));
     return this.employeeService.isAuthenticated.take(1).map(bool => !bool)
   }
 }

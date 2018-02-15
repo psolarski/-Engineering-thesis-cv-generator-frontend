@@ -7,6 +7,9 @@
           <h3>{{'ProfilePage.ChangeYourData' | translate}}</h3>
         </div>
         <div class="card-block">
+          <div *ngIf="exception && errorMessage==='optimistic_lock'" class="alert alert-danger box-msg" role="alert">
+            <strong>{{'Exceptions.optimistic_lock' | translate}}</strong>
+          </div>
           <form [formGroup]="employeeForm" (ngSubmit)="submitForm()">
             <fieldset [disabled]="isSubmitting">
               <div class="text-sm-left header-wrapper">

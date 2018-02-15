@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-
-import { Errors } from '../shared/models/errors.model';
 import { EmployeeService } from '../shared/services/employee.service';
 
 @Component({
@@ -14,15 +12,15 @@ import { EmployeeService } from '../shared/services/employee.service';
 export class AuthComponent {
   isSubmitting = false;
   authForm: FormGroup;
-  errors: Errors = new Errors();
   credentials;
+  exception: boolean;
 
   constructor(
     private router: Router,
     private employeeService: EmployeeService,
     private fb: FormBuilder,
   ) {
-    // use FormBuilder to create a form group
+
     this.authForm = this.fb.group({
       'username': ['', Validators.required],
       'password': ['', Validators.required],
@@ -32,7 +30,6 @@ export class AuthComponent {
 
   submitForm() {
     this.isSubmitting = true;
-    this.errors = new Errors();
 
     this.credentials = this.authForm.value;
     this.employeeService.attemptAuth(this.credentials)
@@ -42,6 +39,12 @@ export class AuthComponent {
           this.router.navigate([`/profile/` + this.credentials.username]);
         },300)
       }, error => {
+        this.exception = true;
+        this.isSubmitting = false;
+        this.authForm.reset();
+        setTimeout(function() {
+          this.exception = false;
+        }.bind(this), 8000);
       console.log(`Error during login occurred!` + error);
     });
   }

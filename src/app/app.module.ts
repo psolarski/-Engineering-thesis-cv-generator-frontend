@@ -12,7 +12,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { GeneratorInterceptor } from './shared/interceptors/generator.interceptor';
 import { AuthModule } from './auth/auth.module';
 import { ProfileModule } from './employees/profile/profile.module';
-import { FooterComponent } from './shared/layout/footer/footer.component';
 import { EmployeesListModule } from './employees/employees-list/employees-list.module';
 import { SkillsListModule } from './developers/skills/skills-list.module';
 import { DeveloperService } from './shared/services/developer.service';
@@ -36,11 +35,7 @@ import { ErrorModule } from './shared/error-pages/error.module';
 
 
 const rootRouting: ModuleWithProviders = RouterModule.forRoot([
-  // {
-  //   // path: '',
-  //   // component: AppComponent,
-  //   // data: {}
-  // }
+
 ], { useHash: false });
 
 

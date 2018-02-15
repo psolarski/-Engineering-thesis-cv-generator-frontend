@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
 import { OutlookService } from '../../shared/services/outlook.service';
 import { Message } from '../../shared/models/outlook/message.model';
 import { EmployeeService } from '../../shared/services/employee.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { forEach } from '@angular/router/src/utils/collection';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './outlook.component.html',
@@ -16,7 +14,8 @@ export class OutlookComponent implements OnInit {
   developerUsername: string;
   messages: Message[];
   send: boolean;
-
+  mailAttachments : Map<String, ArrayBuffer>;
+  mailKeys: IterableIterator<String>;
   mailForm: FormGroup;
   isSubmitting: boolean;
 
@@ -34,8 +33,24 @@ export class OutlookComponent implements OnInit {
         this.messages = data.body;
       });
     });
-
+    this.mailAttachments = this.outlookService.getAllMailAttachments();
+    this.mailKeys = this.mailAttachments.keys();
     this.createForm();
+
+    for(let key of this.mailAttachments.keys()) {
+      let i: number = 0;
+
+      let arraybuffer = this.mailAttachments.get(key);
+
+      let base64 = btoa(
+        new Uint8Array(arraybuffer)
+          .reduce((data, byte) => data + String.fromCharCode(byte), '')
+      );
+      this.mailForm.controls['Attachments'].get(i.toString()).setValue({
+        '@odata.type': "#Microsoft.OutlookServices.FileAttachment", 'Name': key, 'ContentBytes': base64});
+      this.createAttachments();
+      i++;
+    }
   }
 
   private createForm() {
@@ -62,46 +77,18 @@ export class OutlookComponent implements OnInit {
 
   submitForm() {
     this.isSubmitting = true;
-    console.log("SUBMITTTINGG");
-    if (1==1) {
-      console.log("FORM VALID");
+    if (this.mailForm.valid) {
+      this.outlookService.sendMail(this.mailForm.value).subscribe(data => {
+        this.send = true;
+        setTimeout(function() {
+          this.send = false;
+          this.isSubmitting = false;
+        }.bind(this), 4000);
+      }, error => {
 
-      let mailAttachments = this.outlookService.getAllMailAttachments();
-      // for (let i = 0; i< mailAttachments.; i++) {
-      //   let attachment = mailAttachments.pop();
-      //   this.outlookService.attachments.forEach(console.log);
-        // console.log("Attachment " + i + " values: " + attachment.Name, attachment.ContentBytes);
-        // this.mailForm.controls['Attachments'][i].setValue({Name: 'Marek', ContentTypeBytes: '21312'});
-        // this.mailForm.controls['Attachments'].setValue({Name: 'Marek', ContentTypeBytes: '21312'});
-        // this.mailForm.controls['Attachments'].get("ContentTypeBytes").setValue("123123");
-        // this.addNewAttachment();
-        // console.log(this.mailForm.controls['Attachments'].get("Name"));
-
-
-
-      // const control = <FormArray>this.mailForm.controls['Attachments'];
-      //   // control.at(i).get("Name").setValue(mailAttachments[i].Name);
-      //   // control.at(i).get("ContentBytes").setValue(mailAttachments[i].ContentBytes);
-      // console.log("FUCKING VALUES: " + mailAttachments.has("dev3.pdf"));
-      // for(let key of mailAttachments.keys()) {
-      //   let i = 0;
-      //   console.log("NAME: " + control.at(i).get("Name").value);
-      //   console.log("FILE NAME: " + key);
-      //   control.at(i).get("Name").setValue(key);
-      //   control.at(i).get("ContentBytes").setValue(mailAttachments.get(key));
-      //   i++;
-      // }
-      // console.log(this.mailForm.value);
-      this.outlookService.sendMail(this.mailForm.value);
-
-      this.send = true;
-      setTimeout(function() {
-        this.send = false;
-        this.isSubmitting = false;
-        this.mailForm.reset();
-      }.bind(this), 4000);
+      });
     } else {
-      console.log("Damn form is invalid!");
+      console.log("Form is invalid!");
       this.isSubmitting = false;
     }
   }
@@ -134,7 +121,7 @@ export class OutlookComponent implements OnInit {
 
   addNewAttachment() {
     const control = <FormArray>this.mailForm.controls['Attachments'];
-    control.push(this.createRecipient());
+    control.push(this.createAttachments());
   }
 
   deleteAttachment(index: number) {

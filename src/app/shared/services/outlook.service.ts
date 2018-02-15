@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 const outlookTokenName = 'outlookToken';
 
@@ -12,10 +13,11 @@ export class OutlookService {
     {Name: String, ContentBytes: ArrayBuffer}
   ];
 
-  map: Map<string, Blob> = new Map();
+  map: Map<String, ArrayBuffer> = new Map();
 
   constructor(
-    private apiService: ApiService
+    private apiService: ApiService,
+    private router: Router
   ) {}
 
   getToken(): String {
@@ -23,7 +25,6 @@ export class OutlookService {
   }
 
   saveToken(token: String) {
-    console.log(token);
     window.localStorage[outlookTokenName] = token;
   }
 
@@ -46,8 +47,8 @@ export class OutlookService {
     return this.apiService.getForOutlook("outlook/mails", this.getToken());
   }
 
-  sendMail(mailForm) {
-    return this.apiService.postForOutlook("outlook/mail", this.getToken(), mailForm).subscribe();
+  sendMail(mailForm): Observable<any> {
+    return this.apiService.postForOutlook("outlook/mail", this.getToken(), mailForm);
   }
 
   addMailAttachments(fileName: String, blob: Blob) {
@@ -60,20 +61,13 @@ export class OutlookService {
     };
     arrayBuffer = reader.readAsArrayBuffer(blob);
 
-    console.log(fileName);
-
     setTimeout(() => {
-      alert(arrayBuffer);
-      // this.attachments.push({Name: fileName, ContentBytes: arrayBuffer});
-      this.map.set(fileName.toString(), arrayBuffer);
+      this.map.set(fileName.toString()+".pdf", arrayBuffer);
+      this.router.navigate(['/outlook']);
     }, 5000)
   }
 
-  getAllMailAttachments(): Map<string, Blob> {
+  getAllMailAttachments(): Map<String, ArrayBuffer> {
     return this.map;
-  }
-
-  getMapAttachments() {
-
   }
 }

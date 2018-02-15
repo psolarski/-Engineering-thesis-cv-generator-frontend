@@ -42,8 +42,10 @@
                 <th><b>{{'List.Username' | translate}}</b></th>
                 <th><b>{{'ProfilePage.Address' | translate}}</b></th>
                 <th><b>{{'ProfilePage.Email' | translate}}</b></th>
-                <th *showAdmin><b>{{'Buttons.Edit' | translate}}</b></th>
+                <th *showAdmin><b>{{'List.Active' | translate}}</b></th>
+                <th *showAdmin><b>{{'List.Locked' | translate}}</b></th>
                 <th><b>{{'List.Profile' | translate}}</b></th>
+                <th *showAdmin><b>{{'Buttons.Edit' | translate}}</b></th>
               </tr>
             </thead>
             <tbody class="text-center">
@@ -54,11 +56,23 @@
                 <td> {{employee.username}} </td>
                 <td> {{employee.address.city}}, {{employee.address.street}} {{employee.address.number}} </td>
                 <td> {{employee.email}} </td>
-                <td *showAdmin> {{employee.roles[0].name}}  </td>
+                <td *showAdmin>
+                  <p class="green" *ngIf="employee.active">{{"List.Active" | translate}}</p>
+                  <p class="red" *ngIf="!employee.active">{{"List.InActive" | translate}}</p>
+                </td>
+                <td *showAdmin>
+                  <p class="green" *ngIf="employee.locked">{{'List.Unlocked' | translate}}</p>
+                  <p class="red" *ngIf="!employee.locked">{{'List.Locked' | translate}}</p>
                 <td>
                   <button type="button" class="btn btn-sm btn-outline-info"
                           routerLink="/profile/{{employee.username}}">
                     {{'Buttons.Details' | translate}}
+                  </button>
+                </td>
+                <td *showAdmin>
+                  <button type="button" class="btn btn-sm btn-outline-warning"
+                          routerLink="/profile/{{employee.username}}/edit">
+                          {{'Buttons.Edit' | translate}}
                   </button>
                 </td>
               </tr>

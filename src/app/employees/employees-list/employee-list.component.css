@@ -29,3 +29,11 @@
 .table-borderless > thead > tr > th {
   border: none;
 }
+
+.red {
+  color : darkred;
+}
+
+.green {
+  color: forestgreen;
+}

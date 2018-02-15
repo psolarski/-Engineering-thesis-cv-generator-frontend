@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EmployeeService } from '../../shared/services/employee.service';
 import {Location} from '@angular/common';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Employee } from '../../shared/models/employee.model';
 
 @Component({
   selector: "change-password",
@@ -14,6 +15,9 @@ export class ChangePasswordComponent implements OnInit {
   currentEmployeeUsername: string;
   isSubmitting: boolean;
   passwordForm: FormGroup;
+  errorMessage: string;
+  exception: boolean;
+  currentEmployee: Employee;
 
   constructor(
     private route: ActivatedRoute,
@@ -27,17 +31,26 @@ export class ChangePasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentEmployeeUsername = this.route.snapshot.paramMap.get('username');
-    this.createForm();
-  };
-
+    this.employeeService.getEmployee(this.currentEmployeeUsername).subscribe(employee => {
+      this.currentEmployee = employee.body;
+      this.createForm();
+    });
+  }
   submitForm() {
     this.isSubmitting = true;
     if (this.passwordForm.valid) {
       console.log('form submitted');
-      this.employeeService.changePassword(this.passwordForm.value, this.currentEmployeeUsername).subscribe(data => {
-        this.router.navigate(["/profile/" + this.currentEmployeeUsername]);
-
-      });
+      this.employeeService.changePassword(this.passwordForm.value, this.currentEmployeeUsername, this.currentEmployee)
+        .subscribe(data => {
+          this.router.navigate(["/profile/" + this.currentEmployeeUsername]);
+        }, error => {
+            this.errorMessage = error.message;
+            this.exception = true;
+            setTimeout(function() {
+              this.exception = false;
+            }.bind(this), 8000);
+          }
+      );
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.passwordForm);

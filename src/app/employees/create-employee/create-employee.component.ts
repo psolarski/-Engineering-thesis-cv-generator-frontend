@@ -71,7 +71,6 @@ export class CreateEmployeeComponent implements OnInit {
           break;
         }
       }
-      console.log(this.newEmployee);
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.employeeForm);

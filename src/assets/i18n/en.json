@@ -22,7 +22,11 @@
     "Delete": "Delete",
     "AddNewRow": "Add new row",
     "Create": "Create",
-    "SignIn": "Sign in"
+    "SignIn": "Sign in",
+    "Activate": "Activate",
+    "InActive": "Inactive",
+    "Unlock": "Unlock",
+    "Lock": "Lock"
   },
   "List" : {
     "Show": "Show",
@@ -53,7 +57,11 @@
     "SkillList": "Skill List",
     "Name": "Name",
     "Level": "Level",
-    "EmployeeList": "Employee List"
+    "EmployeeList": "Employee List",
+    "Active": "Active",
+    "InActive": "InActive",
+    "Locked": "Locked",
+    "Unlocked": "Unlocked"
   },
   "Errors": {
     "required": "Filed can not be empty!",
@@ -65,7 +73,9 @@
     "min": "Number must be bigger!"
   },
   "Exceptions": {
-
+    "UsernameOrPassword": "Invalid username or password!",
+    "optimistic_lock": "You work with old version!",
+    "runtime_exception": "Internal error. Try again later."
   },
   "Outlook": {
     "Subject": "Subject",
@@ -78,7 +88,8 @@
     "Send": "Send",
     "GeneratedCV": "Generated CV",
     "Download": "Download",
-    "AddAsAttachment": "Add as Attachment"
+    "AddAsAttachment": "Add as Attachment",
+    "FileName": "Attachment"
   },
   "ProfilePage": {
     "Username": "Username",
@@ -100,7 +111,8 @@
     "Address": "Address",
     "CreateNewProject": "Create new project",
     "CreateNewEducation": "Create new education",
-    "CreateNewSkill": "Create new skill"
+    "CreateNewSkill": "Create new skill",
+    "CreateNewEmployee": "Create new employee"
   },
   "Error": {
     "Error403": "Błąd 403 Dostęp Zabroniony!",

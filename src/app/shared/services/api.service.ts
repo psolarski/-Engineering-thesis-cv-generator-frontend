@@ -11,6 +11,8 @@ import { JwtService } from './jwt.service';
 import { environment } from '../../../environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Http, ResponseContentType, Headers} from '@angular/http';
+import { Employee } from '../models/employee.model';
+import { EditEmployeeDto } from '../models/dto/edit-employee.dto';
 
 @Injectable()
 export class ApiService {
@@ -36,12 +38,50 @@ export class ApiService {
   put(path: string, body: Object): Observable<any> {
     let url = environment.api_url + path;
 
-    console.log(url);
-    console.log(JSON.stringify(body));
     return this.httpClient.put(
       url,
       JSON.stringify(body),
       { headers: this.setHeaders(), observe: 'response' }
+    );
+  }
+
+  putEmployee(path: string, body: Employee | EditEmployeeDto): Observable<any> {
+    let url = environment.api_url + path;
+
+    let httpHeader = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'ETag': body.version.toString()
+    };
+    if (this.jwtService.getToken()) {
+      httpHeader['Authorization'] = this.jwtService.getToken();
+    }
+
+    console.log(httpHeader);
+    return this.httpClient.put(
+      url,
+      JSON.stringify(body),
+      { headers: new HttpHeaders(httpHeader), observe: 'response' }
+    );
+  }
+
+  putEmployeeChangePassword(path: string, body: Employee | EditEmployeeDto, password: object): Observable<any> {
+    let url = environment.api_url + path;
+
+    let httpHeader = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'ETag': body.version.toString()
+    };
+    if (this.jwtService.getToken()) {
+      httpHeader['Authorization'] = this.jwtService.getToken();
+    }
+
+    console.log(httpHeader);
+    return this.httpClient.put(
+      url,
+      JSON.stringify(password),
+      { headers: new HttpHeaders(httpHeader), observe: 'response' }
     );
   }
 
@@ -93,8 +133,6 @@ export class ApiService {
     let body = {
       Message
     };
-    console.log("BODY MAIL FORM: " + JSON.stringify(body));
-    console.log(url);
     return this.httpClient
       .post(url,
         JSON.stringify(body),

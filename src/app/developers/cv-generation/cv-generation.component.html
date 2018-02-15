@@ -7,7 +7,7 @@
           <h3>{{'Outlook.GeneratedCV' | translate}} {{developerUsername}}</h3>
         </div>
         <div class="card-block">
-          <div ng-if="pdfFileUrl" class="col-md-10 text-center">
+          <div *ngIf="pdfFileUrl" class="col-md-10 text-center">
             <iframe class="pdf-display" [src]="pdfFileUrl" width="100%" height="500rem" allowfullscreen></iframe>
           </div>
         </div>
@@ -18,7 +18,7 @@
           <button class="btn btn-primary float-right" type="button" (click)="saveGeneratedCv()">
             {{'Outlook.Download' | translate}}
           </button>
-          <button class="btn btn-success float-right" type="button">
+          <button *ngIf="isOutlookTokenAvailable" class="btn btn-success float-right" type="button" (click)="addAttachment()">
             {{'Outlook.AddAsAttachment' | translate}}
           </button>
         </div>

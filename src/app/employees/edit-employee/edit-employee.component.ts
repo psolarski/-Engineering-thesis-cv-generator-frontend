@@ -20,6 +20,8 @@ export class EditEmployeeComponent implements OnInit {
   isSubmitting: boolean;
   role: Role;
   username: string;
+  errorMessage: string;
+  exception: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -45,8 +47,8 @@ export class EditEmployeeComponent implements OnInit {
           this.currentEmployee.roles = this.employee.roles;
           this.currentEmployee.surname = this.employee.surname;
           this.currentEmployee.type = this.employee.type;
+          this.currentEmployee.version = this.employee.version;
           this.employeeForm.controls['roles'].get('name').setValue(this.currentEmployee.type);
-          console.log(this.employeeForm.controls['roles'].get('name').value);
         });
   }
 
@@ -76,13 +78,16 @@ export class EditEmployeeComponent implements OnInit {
       }
       this.employeeService.updateEmployee(this.username, this.currentEmployee)
         .subscribe(data => {
-          console.log("data " + data.body);
           this.router.navigate([ "/profile/" + this.username ]);
         }, error => {
-          console.log("error " + error);
+          this.errorMessage = error.message;
+          this.exception = true;
+          this.isSubmitting = false;
+          setTimeout(function() {
+            this.exception = false;
+          }.bind(this), 8000);
         }
       );
-      console.log(this.currentEmployee);
     } else {
       console.log("INVALID FORM AFTER SUBMITTING");
       this.validateAllFormFields(this.employeeForm);
@@ -168,6 +173,14 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   isAdmin(): boolean {
-    return this.currentEmployee.roles.filter(function(e) { return e.name === 'ADMIN'; }).length > 0;
+    let isadmin;
+    this.employeeService.currentEmployee.subscribe(data => {
+      if (data.roles.filter(function (e) {
+          return e.name === 'ADMIN';
+        }).length > 0) {
+        isadmin = true;
+      }
+    });
+    return isadmin;
   }
 }

@@ -17,6 +17,6 @@ export class ShowAuthenticatedDirective implements OnInit {
       } else {
         this.viewContainer.clear();
       }
-    })
+    });
   }
 }
